@@ -381,6 +381,18 @@
   resolved "https://registry.yarnpkg.com/@rollup/rollup-win32-x64-msvc/-/rollup-win32-x64-msvc-4.27.2.tgz#dd46f94fb22ea3be0b79193f721b3510fb428a1d"
   integrity sha512-foJM5vv+z2KQmn7emYdDLyTbkoO5bkHZE1oth2tWbQNGW7mX32d46Hz6T0MqXdWS2vBZhaEtHqdy9WYwGfiliA==
 
+"@skeletonlabs/skeleton@^2.10.3":
+  version "2.10.3"
+  resolved "https://registry.yarnpkg.com/@skeletonlabs/skeleton/-/skeleton-2.10.3.tgz#8d60ef3c1f6763ea7ca804f9cef2cb4f32cca801"
+  integrity sha512-O1RecF68zEVvZl3GgRS4emqWMUIQLHvTOFoqGOw/2OXCPE06IxUQrHQf2hnxCPxtGZNXY2YX8UNV38l+eH8GNQ==
+  dependencies:
+    esm-env "1.0.0"
+
+"@skeletonlabs/tw-plugin@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@skeletonlabs/tw-plugin/-/tw-plugin-0.4.0.tgz#fe9eb12123c46e7ffa79bf6eaf2da853c1c6ace6"
+  integrity sha512-v6Y4deBq9ByRx3kTRGgekhhYkWEYgNNNu8UXOwJngCStB7w8SwmbNFSeHkluxMbgCgMnJyp220EMpw9nj/rEsQ==
+
 "@sveltejs/adapter-auto@^3.0.0":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@sveltejs/adapter-auto/-/adapter-auto-3.3.1.tgz#57a3d9c402bea468f0899755758551e7e74deaae"
@@ -464,6 +476,13 @@
   version "7.0.15"
   resolved "https://registry.yarnpkg.com/@types/json-schema/-/json-schema-7.0.15.tgz#596a1747233694d50f6ad8a7869fcb6f56cf5841"
   integrity sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==
+
+"@types/node@^22.9.0":
+  version "22.9.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.9.0.tgz#b7f16e5c3384788542c72dc3d561a7ceae2c0365"
+  integrity sha512-vuyHg81vvWA1Z1ELfvLko2c8f34gyA0zaic0+Rllc5lbCnbSyuvb2Oxpm6TAUAC/2xZN3QGqxBNggD1nNR2AfQ==
+  dependencies:
+    undici-types "~6.19.8"
 
 "@typescript-eslint/eslint-plugin@8.14.0":
   version "8.14.0"
@@ -951,6 +970,11 @@ eslint@^9.7.0:
     minimatch "^3.1.2"
     natural-compare "^1.4.0"
     optionator "^0.9.3"
+
+esm-env@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/esm-env/-/esm-env-1.0.0.tgz#b124b40b180711690a4cb9b00d16573391950413"
+  integrity sha512-Cf6VksWPsTuW01vU9Mk/3vRue91Zevka5SjyNf3nEpokFRuqt/KjUQoGAwq9qMmhpLTHmXzSIrFRw8zxWzmFBA==
 
 esm-env@^1.0.0:
   version "1.1.4"
@@ -1969,6 +1993,11 @@ typescript@^5.0.0:
   version "5.6.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-5.6.3.tgz#5f3449e31c9d94febb17de03cc081dd56d81db5b"
   integrity sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==
+
+undici-types@~6.19.8:
+  version "6.19.8"
+  resolved "https://registry.yarnpkg.com/undici-types/-/undici-types-6.19.8.tgz#35111c9d1437ab83a7cdc0abae2f26d88eda0a02"
+  integrity sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==
 
 update-browserslist-db@^1.1.1:
   version "1.1.1"
