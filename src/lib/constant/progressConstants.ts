@@ -8,4 +8,6 @@ const DARKGRAY = 'rgba(128, 128, 128, 0.6)';
 
 const weekColors = [TEAL, ORANGE, PURPLE, RED, BLUE, DARKGRAY];
 
-export { TEAL, ORANGE, PURPLE, RED, BLUE, YELLOW, weekColors };
+const WEEKLY_WEIGHT_LOSS_TARGET = 0.5;
+
+export { TEAL, ORANGE, PURPLE, RED, BLUE, YELLOW, weekColors, WEEKLY_WEIGHT_LOSS_TARGET };

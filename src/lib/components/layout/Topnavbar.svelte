@@ -5,10 +5,15 @@
 
 	import { getCurrentWeekInfo } from '$lib/utils/dateUtils';
 	import type { WeekInfo } from '$lib/types/dateUtils';
+	import { page } from '$app/stores';
+	import Navlink from '../ui/Navlink.svelte';
 
 	let weekInfo: WeekInfo;
 
 	weekInfo = getCurrentWeekInfo();
+
+	$: classesActive = (href: string) =>
+		href === $page.url.pathname ? '!underline hover:!opacity-80' : 'opacity-80';
 </script>
 
 <nav class="bg-body-light-2 flex items-center justify-around px-5 py-3 drop-shadow">
@@ -22,8 +27,9 @@
 		</h1>
 	</div>
 	<div class="mr-auto hidden w-full items-center justify-around md:flex">
-		<a class="text-grey-800 text-goal text-xl no-underline" href="/progress">Progress</a>
-		<a class="text-grey-800 text-goal text-xl no-underline" href="/progress">Goals</a>
+		<Navlink {classesActive} navLink="/" navText="Home" />
+		<Navlink {classesActive} navLink="/progress" navText="Progress" />
+		<Navlink {classesActive} navLink="/goals" navText="Goals" />
 		<button type="button" class="btn variant-filled">
 			<span><MdiPlus /></span>
 			<span>Add Weight</span>

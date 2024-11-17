@@ -12,6 +12,12 @@ import {
 	calculateRankByPercentageLoss,
 	prepareRankChartData
 } from '$lib/utils/chartUtils/rankPercentageLoss';
+import {
+	calculateWeeksAheadBehind,
+	prepareWeeksAheadBehindChartData
+} from '$lib/utils/chartUtils/weeksAheadBehindUtils';
+import { WEEKLY_WEIGHT_LOSS_TARGET } from '$lib/constant/progressConstants';
+import { calculateGroupTotalWeightLoss } from '$lib/utils/chartUtils/groupTotalWeightLoss';
 
 export const load: PageLoad = () => {
 	const { dieters, weeklyChanges } = calculateWeeklyWeightChange(data);
@@ -23,9 +29,16 @@ export const load: PageLoad = () => {
 	const rankedData = calculateRankByPercentageLoss(weeklyPercentageChanges);
 	const rankChartData = prepareRankChartData(rankedData);
 
+	const weeksAheadBehindData = calculateWeeksAheadBehind(data, WEEKLY_WEIGHT_LOSS_TARGET); // Target: 0.5 kg/week
+	const weeksAheadBehindChartData = prepareWeeksAheadBehindChartData(weeksAheadBehindData);
+
+	const groupTotalWeightLoss = calculateGroupTotalWeightLoss(data);
+
 	return {
 		weeklyChangesChartData,
 		percentageChartData,
-		rankChartData
+		rankChartData,
+		weeksAheadBehindChartData,
+		groupTotalWeightLoss
 	};
 };
