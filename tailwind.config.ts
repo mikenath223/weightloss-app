@@ -22,6 +22,16 @@ export default {
 				substrate: '#f8f8fc',
 				action: '#1726A2',
 				goal: '#30B667'
+			},
+			keyframes: {
+				customPop: {
+					'0%': { transform: 'scale(0.8)', opacity: '0.5' },
+					'50%': { transform: 'scale(1.1)', opacity: '1' },
+					'100%': { transform: 'scale(1)', opacity: '1' }
+				}
+			},
+			animation: {
+				customPop: 'customPop 1s ease-in-out'
 			}
 		}
 	},

@@ -4,19 +4,18 @@
 	import MdiMenu from 'virtual:icons/mdi/menu';
 
 	import { getCurrentWeekInfo } from '$lib/utils/dateUtils';
-	import type { WeekInfo } from '$lib/types/dateUtils';
 	import { page } from '$app/stores';
 	import Navlink from '../ui/Navlink.svelte';
 
-	let weekInfo: WeekInfo;
-
-	weekInfo = getCurrentWeekInfo();
+	$: weekInfo = getCurrentWeekInfo();
 
 	$: classesActive = (href: string) =>
 		href === $page.url.pathname ? '!underline hover:!opacity-80' : 'opacity-80';
 </script>
 
-<nav class="bg-body-light-2 flex items-center justify-around px-5 py-3 drop-shadow">
+<nav
+	class="bg-body-light-2 fixed top-0 z-10 flex w-full items-center justify-around px-5 py-3 drop-shadow"
+>
 	<div class="mr-auto w-full">
 		<h4 class="h4 flex items-center gap-2 text-gray-500">
 			<span>Week {weekInfo.weekNumber}</span>

@@ -33,19 +33,17 @@
 	<p class="py-3">This is pretty sleek, seems we've been giving our targets no breathing space!</p>
 	<section class="grid grid-cols-1 gap-10 xl:grid-cols-2">
 		<CardWData>
-			<div class="flex">
-				<div class="mb-4 ml-auto mt-2">
-					<label for="dieter" class="text-md block font-medium text-gray-700">Select Dieter</label>
-					<select
-						id="dieter"
-						bind:value={selectedDieter}
-						class="w-28 rounded border-2 border-gray-500 p-2 focus:outline-none focus:ring-2 focus:ring-indigo-200"
-					>
-						{#each data.individualCumulativeProgress as { name }}
-							<option value={name}>{name}</option>
-						{/each}
-					</select>
-				</div>
+			<div class="mx-4 mb-4 mt-2">
+				<label for="dieter" class="text-md block font-semibold text-gray-700">Select Dieter</label>
+				<select
+					id="dieter"
+					bind:value={selectedDieter}
+					class="w-28 rounded border-2 border-red-500 p-2 focus:outline-none focus:ring-2 focus:ring-red-300"
+				>
+					{#each data.individualCumulativeProgress as { name }}
+						<option value={name}>{name}</option>
+					{/each}
+				</select>
 			</div>
 			<DataChart chartConfig={goalsCumulativeChartConfig} />
 		</CardWData>

@@ -6,8 +6,8 @@
 
 <Topnavbar />
 
-<main class="font-body container max-w-screen-2xl p-10">
-	<section class="my-10 md:mx-6">
+<main class="font-body container mx-auto max-w-screen-2xl p-5 md:p-10">
+	<section class="mb-10 mt-28 md:mx-6">
 		{@render children()}
 	</section>
 </main>
