@@ -68,10 +68,10 @@ export const prepareWeeklyChangesChartData = (
 export const weeklyWeightChangesChartOptions = {
 	indexAxis: 'y', // Horizontal bars
 	responsive: true,
-	maintainAspectRatio: true,
+	maintainAspectRatio: false,
 	plugins: {
 		legend: {
-			position: 'right'
+			position: 'top'
 		},
 		title: {
 			display: true,

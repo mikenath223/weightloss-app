@@ -38,6 +38,7 @@ export const prepareRankChartData = (
 export const rankPercentageLossChartOptions = {
 	indexAxis: 'y', // Horizontal bars
 	responsive: true,
+	maintainAspectRatio: false,
 	plugins: {
 		legend: {
 			display: false // No need for legend since rank is explicit

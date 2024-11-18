@@ -44,10 +44,10 @@ export const prepareWeeklyPercentageChartData = (
 export const percentageChangesChartOptions = {
 	indexAxis: 'y', // Horizontal bars
 	responsive: true,
-	maintainAspectRatio: true,
+	maintainAspectRatio: false,
 	plugins: {
 		legend: {
-			position: 'right'
+			position: 'top'
 		},
 		title: {
 			display: true,

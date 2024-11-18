@@ -62,6 +62,7 @@ export const prepareWeeksAheadBehindChartData = (
 export const weeksAheadBehindChartOptions = {
 	indexAxis: 'y', // Horizontal bars
 	responsive: true,
+	maintainAspectRatio: false,
 	plugins: {
 		legend: {
 			display: false // No legend needed

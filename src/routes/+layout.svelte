@@ -7,5 +7,7 @@
 <Topnavbar />
 
 <main class="font-body container max-w-screen-2xl p-10">
-	{@render children()}
+	<section class="my-10 md:mx-6">
+		{@render children()}
+	</section>
 </main>

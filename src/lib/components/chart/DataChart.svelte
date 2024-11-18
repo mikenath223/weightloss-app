@@ -22,6 +22,6 @@
 	}
 </script>
 
-<section class="relative h-full md:h-[40vh]">
+<section class="relative h-[40vh]">
 	<canvas use:chart={chartConfig.data}></canvas>
 </section>
