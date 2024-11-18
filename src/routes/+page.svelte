@@ -10,10 +10,12 @@
 <section class="flex min-h-screen flex-col items-center justify-between gap-8 space-y-10">
 	<header class="text-center">
 		<h1 class="text-5xl font-extrabold text-indigo-700 drop-shadow-md">Weekly Summary</h1>
-		<p class="mt-4 text-2xl text-gray-800">
+		<p class="mt-4 text-xl text-gray-800 md:text-2xl">
 			This is the progress for <span class="font-bold">{data.weekInfo.weekRange}</span>.
 		</p>
-		<p class="mt-2 text-2xl text-gray-800">Let's celebrate the wins and keep striving!</p>
+		<p class="mt-2 text-xl text-gray-800 md:text-2xl">
+			Let's celebrate the wins and keep striving!
+		</p>
 	</header>
 	<TopAchiever
 		name={data.weeklySummary.topAchiever.name}
