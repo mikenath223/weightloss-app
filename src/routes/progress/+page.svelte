@@ -8,6 +8,7 @@
 	import type { ChartConfiguration } from 'chart.js';
 	import CardWData from '$lib/components/ui/CardWData.svelte';
 	import { updateWeeklyPercentageChartConfig } from '$lib/utils/chart/percentageWeightChangesUtils';
+	import PageHeaderView from '$lib/components/ui/PageHeaderView.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -42,15 +43,11 @@
 	};
 </script>
 
-<section class="progress-page min-h-screen space-y-12 py-10">
-	<header class="text-center">
-		<h1 class="text-3xl font-extrabold text-indigo-700 drop-shadow-md md:text-5xl">
-			🌟 Progress Tracker 🌟
-		</h1>
-		<p class="mt-4 text-lg text-gray-800 md:text-xl">
-			Let's see how far we've come together as a team! Keep going! 💪
-		</p>
-	</header>
+<section class="progress-page min-h-screen space-y-16 py-10">
+	<PageHeaderView
+		title="🌟 Progress Tracker 🌟"
+		subtitle="Let's see how far we've come together as a team! Keep going! 💪"
+	/>
 
 	<section class="group-performance space-y-8">
 		<h2 class="text-2xl font-bold text-purple-600 drop-shadow-sm">Group Performance</h2>

@@ -10,6 +10,7 @@
 		groupCumulativeProgressChartOptions,
 		prepareGroupCumulativeProgressChartData
 	} from '$lib/utils/chart/groupGoalsCumulativeProgress';
+	import PageHeaderView from '$lib/components/ui/PageHeaderView.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -28,14 +29,11 @@
 	};
 </script>
 
-<section class="goals-page min-h-screen space-y-6 px-6 py-10">
-	<header class="!mb-20 text-center">
-		<h1 class="text-2xl font-extrabold text-red-600 drop-shadow-md md:text-4xl">
-			🌟 Goals Dashboard 🌟
-		</h1>
-		<p class="mt-4 text-lg text-gray-800 md:text-xl">Keep striving and smashing those targets!</p>
-	</header>
-
+<section class="goals-page min-h-screen px-6 py-10">
+	<PageHeaderView
+		title="🌟 Goals Dashboard 🌟"
+		subtitle="Keep striving and smashing those targets! 🎉"
+	/>
 	<section class="grid grid-cols-1 gap-12 lg:grid-cols-2">
 		<CardWData className={'!p-0 !pb-4'}>
 			<div
@@ -62,7 +60,6 @@
 				<DataChart chartConfig={goalsCumulativeChartConfig} />
 			</div>
 		</CardWData>
-
 		<CardWData className={'!p-0 !pb-4'}>
 			<div
 				class="flex items-center justify-between rounded-t-lg bg-gradient-to-r from-green-400 to-teal-400 px-4 py-2 text-white"

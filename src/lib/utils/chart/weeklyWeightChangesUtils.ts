@@ -124,6 +124,7 @@ export const updateWeeklyChangesChartConfig = (
 	options: {
 		indexAxis: 'y', // Horizontal bar chart
 		responsive: true,
+		maintainAspectRatio: false,
 		plugins: {
 			legend: {
 				display: false
