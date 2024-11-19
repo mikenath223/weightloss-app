@@ -45,6 +45,7 @@
 					{/each}
 				</select>
 			</div>
+			<h4 class="h4 mx-4 mb-2">Here is {selectedDieter}'s cumulative progress vs weekly target</h4>
 			<DataChart chartConfig={goalsCumulativeChartConfig} />
 		</CardWData>
 		<CardWData>

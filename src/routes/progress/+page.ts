@@ -1,13 +1,7 @@
 import { data } from '$lib/constant/mockData';
 import type { PageLoad } from './$types';
-import {
-	calculateWeeklyWeightChange,
-	prepareWeeklyChangesChartData
-} from '$lib/utils/chartUtils/weeklyWeightChangesUtils';
-import {
-	calculateWeeklyPercentageChange,
-	prepareWeeklyPercentageChartData
-} from '$lib/utils/chartUtils/percentageWeightChangesUtils';
+import { calculateWeeklyWeightChange } from '$lib/utils/chartUtils/weeklyWeightChangesUtils';
+import { calculateWeeklyPercentageChange } from '$lib/utils/chartUtils/percentageWeightChangesUtils';
 import {
 	calculateRankByPercentageLoss,
 	prepareRankChartData
@@ -20,11 +14,12 @@ import { WEEKLY_WEIGHT_LOSS_TARGET } from '$lib/constant/progressConstants';
 import { calculateGroupTotalWeightLoss } from '$lib/utils/chartUtils/groupTotalWeightLoss';
 
 export const load: PageLoad = () => {
-	const { dieters, weeklyChanges } = calculateWeeklyWeightChange(data);
-	const weeklyChangesChartData = prepareWeeklyChangesChartData(dieters, weeklyChanges);
+	const { weeklyChanges, weeks } = calculateWeeklyWeightChange(data);
+	const dieters = Object.keys(data[weeks[0]]);
+	const weeklyChangesData = { weeklyChanges, weeks, dieters };
 
 	const { weeklyChanges: weeklyPercentageChanges } = calculateWeeklyPercentageChange(data);
-	const percentageChartData = prepareWeeklyPercentageChartData(dieters, weeklyPercentageChanges);
+	const percentageChangesData = { weeklyPercentageChanges, weeks, dieters };
 
 	const rankedData = calculateRankByPercentageLoss(weeklyPercentageChanges);
 	const rankChartData = prepareRankChartData(rankedData);
@@ -35,8 +30,8 @@ export const load: PageLoad = () => {
 	const groupTotalWeightLoss = calculateGroupTotalWeightLoss(data);
 
 	return {
-		weeklyChangesChartData,
-		percentageChartData,
+		weeklyChangesData,
+		percentageChangesData,
 		rankChartData,
 		weeksAheadBehindChartData,
 		groupTotalWeightLoss

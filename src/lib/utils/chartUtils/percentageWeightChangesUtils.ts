@@ -1,6 +1,24 @@
-import { weekColors } from '$lib/constant/progressConstants';
+import { PINK, PINK_SOLID, TEAL_OPAQUE, TEAL_SOLID } from '$lib/constant/progressConstants';
 import { calculateWeeklyChanges } from './weeklyWeightChangesUtils';
 
+/**
+ * Calculates the weekly percentage change in weight for each dieter.
+ *
+ * Uses the `calculateWeeklyChanges` function to iterate over the provided data,
+ * applying a percentage change calculation between the current and previous week's
+ * weights for each dieter.
+ *
+ * The percentage change is calculated as:
+ * ((currentWeight - previousWeight) / previousWeight) * 100
+ *
+ * Returns undefined for any week where the current or previous weight is missing,
+ * or if the previous weight is zero to avoid division by zero.
+ *
+ * @param data - A record where keys are week dates and values are objects
+ * containing dieter names as keys and their weight data as values.
+ * @returns An object containing the dieters, weeks, and calculated weekly
+ * percentage changes.
+ */
 export const calculateWeeklyPercentageChange = (
 	data: Record<string, Record<string, number | undefined>>
 ) => {
@@ -19,53 +37,99 @@ export const calculateWeeklyPercentageChange = (
 	);
 };
 
+/**
+ * Prepares chart data for displaying weekly percentage weight changes for a selected dieter.
+ *
+ * The chart data includes labels for each week (starting from Week 2) and a dataset
+ * representing the percentage changes in weight for the selected dieter. The color
+ * of the bars in the chart is determined by whether the change is negative or positive.
+ *
+ * @param weeklyPercentageChanges - An array of objects where keys are dieter names and values
+ * are their weekly percentage weight changes.
+ * @param weeks - An array of week labels.
+ * @param selectedDieter - The name of the dieter for whom the chart data is being prepared.
+ * @returns An object containing the chart data with formatted labels and datasets.
+ */
 export const prepareWeeklyPercentageChartData = (
-	dieters: string[],
-	weeklyPercentageChanges: Record<string, number | undefined>[]
+	weeklyPercentageChanges: Record<string, number | undefined>[],
+	weeks: string[],
+	selectedDieter: string
 ) => {
-	const weekBorderColors = weekColors.map(
-		(color) => color.replace('0.6', '1') // Make border colors fully opaque
+	const dieterChanges = weeklyPercentageChanges.map(
+		(weekChange) => weekChange[selectedDieter] ?? 0
 	);
 
-	const datasets = weeklyPercentageChanges.map((change, weekIndex) => ({
-		label: `Week ${weekIndex + 2}`, // Start labeling from Week 2
-		data: dieters.map((dieter) => change[dieter] ?? 0), // Use 0 for undefined values
-		backgroundColor: weekColors[weekIndex % weekColors.length], // Cycle through colors
-		borderColor: weekBorderColors[weekIndex % weekBorderColors.length],
-		borderWidth: 1
-	}));
-
 	return {
-		labels: dieters,
-		datasets
+		labels: weeks.slice(1), // Start from Week 2 since Week 1 has no comparison
+		datasets: [
+			{
+				label: `Weekly Percentage Changes for ${selectedDieter}`,
+				data: dieterChanges, // Changes for the selected dieter
+				backgroundColor: dieterChanges.map((change) => (change < 0 ? TEAL_OPAQUE : PINK)),
+				borderColor: dieterChanges.map((change) => (change < 0 ? TEAL_SOLID : PINK_SOLID)),
+				borderWidth: 1
+			}
+		]
 	};
 };
 
-export const percentageChangesChartOptions = {
-	indexAxis: 'y', // Horizontal bars
-	responsive: true,
-	maintainAspectRatio: false,
-	plugins: {
-		legend: {
-			position: 'top'
-		},
-		title: {
-			display: true,
-			text: 'Weekly Percentage Weight Changes (%)'
-		},
-		tooltip: {
-			callbacks: {
-				label: (tooltipItem: { raw: number }) => `${tooltipItem.raw.toFixed(2)}%` // Format tooltip values
-			}
-		}
-	},
-	scales: {
-		x: {
-			beginAtZero: false, // Allow negative and positive values
+import type { ChartConfiguration } from 'chart.js';
+
+/**
+ * Updates the chart configuration for displaying weekly percentage weight changes
+ * for a selected dieter.
+ *
+ * The chart configuration is updated with the chart data prepared by
+ * `prepareWeeklyPercentageChartData` and includes options for a horizontal bar
+ * chart with title, legend, and tooltip customizations.
+ *
+ * @param weeklyPercentageChanges - An array of objects where keys are dieter names
+ * and values are their weekly percentage weight changes.
+ * @param weeks - An array of week labels.
+ * @param selectedDieter - The name of the dieter for whom the chart data is being
+ * prepared.
+ * @returns A `ChartConfiguration<'bar'>` object that can be used to update a
+ * Chart.js chart instance.
+ */
+export const updateWeeklyPercentageChartConfig = (
+	weeklyPercentageChanges: Record<string, number | undefined>[],
+	weeks: string[],
+	selectedDieter: string
+): ChartConfiguration<'bar'> => ({
+	type: 'bar',
+	data: prepareWeeklyPercentageChartData(weeklyPercentageChanges, weeks, selectedDieter),
+	options: {
+		indexAxis: 'y', // Horizontal bar chart
+		responsive: true,
+		plugins: {
+			legend: {
+				display: false
+			},
 			title: {
 				display: true,
-				text: 'Percentage Change (%)'
+				text: `Weekly Percentage Weight Changes for ${selectedDieter} (%)`
+			},
+			tooltip: {
+				callbacks: {
+					label: (tooltipItem: { raw: any }) =>
+						`${tooltipItem.raw > 0 ? '+' : ''}${tooltipItem.raw.toFixed(2)}%`
+				}
+			}
+		},
+		scales: {
+			x: {
+				beginAtZero: true, // Allow negative and positive values
+				title: {
+					display: true,
+					text: 'Percentage Change (%)'
+				}
+			},
+			y: {
+				title: {
+					display: true,
+					text: 'Weeks'
+				}
 			}
 		}
 	}
-};
+});

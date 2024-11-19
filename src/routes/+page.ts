@@ -3,8 +3,8 @@ import { calculateWeeklySummary } from '$lib/utils/chartUtils/communityWeeklySum
 import { getCurrentWeekInfo } from '$lib/utils/dateUtils';
 
 export const load = () => {
-	const weeklySummary = calculateWeeklySummary(data);
-	let weekInfo = getCurrentWeekInfo();
+	const weekInfo = getCurrentWeekInfo(); // Get current week range
+	const weeklySummary = calculateWeeklySummary(data, weekInfo.weekRange); // Check for data
 
 	return {
 		weeklySummary,

@@ -1,3 +1,9 @@
+/**
+ * Calculates the total weight loss for the group for each week.
+ *
+ * @param data - Record where keys are week dates and values are objects with dieter names as keys and weight data as values.
+ * @returns An array of objects with week dates and the total weight loss for the group for that week.
+ */
 export const calculateGroupTotalWeightLoss = (
 	data: Record<string, Record<string, number | undefined>>
 ) => {

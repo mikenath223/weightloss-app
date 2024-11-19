@@ -14,12 +14,12 @@
 	let errors: Record<string, string> = $state({});
 
 	const schema = yup.object().shape({
-		name: yup.string().required('Name is required'),
+		name: yup.string().required('Name is required').max(256, 'Name must not exceed 256 characters'),
 		weight: yup
 			.number()
 			.required('Weight is required')
 			.min(1, 'Weight must be at least 1 kg')
-			.max(500, 'Weight must not exceed 500 kg')
+			.max(1000, 'Weight must not exceed 1000 kg')
 	});
 
 	async function onFormSubmit(): Promise<void> {

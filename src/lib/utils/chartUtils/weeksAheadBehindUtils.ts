@@ -1,13 +1,32 @@
-import { WEEKLY_WEIGHT_LOSS_TARGET } from '$lib/constant/progressConstants';
+import {
+	DARK_GREEN,
+	DARK_RED,
+	GREEN,
+	RED_TRANSLUCENT,
+	WEEKLY_WEIGHT_LOSS_TARGET
+} from '$lib/constant/progressConstants';
 
+/**
+ * Calculates the number of weeks each dieter is ahead or behind their weight loss target.
+ *
+ * This function computes the total weight loss for each dieter across all weeks
+ * and compares it to their cumulative target loss. The result is expressed in terms
+ * of weeks ahead or behind the target.
+ *
+ * @param data - A record where keys are week dates and values are objects
+ * containing dieter names as keys and their weight data as values.
+ * @param targetPerWeek - The target weight loss per week for each dieter.
+ * @returns An array of objects where each object contains the dieter's name
+ * and the number of weeks they are ahead or behind their target.
+ */
 export const calculateWeeksAheadBehind = (
 	data: Record<string, Record<string, number | undefined>>,
 	targetPerWeek: number
 ) => {
-	const weeks = Object.keys(data); // All weeks
+	const weeks = Object.keys(data);
 	const numWeeks = weeks.length;
 
-	const dieters = Object.keys(data[weeks[0]]); // Dieters' names
+	const dieters = Object.keys(data[weeks[0]]);
 
 	// Aggregate total weight loss for each dieter
 	const results = dieters.map((dieter) => {
@@ -41,17 +60,11 @@ export const prepareWeeksAheadBehindChartData = (
 			{
 				label: 'Weeks Ahead/Behind',
 				data: weeksAheadBehindData.map((item) => item.weeksAheadBehind), // Weeks ahead/behind
-				backgroundColor: weeksAheadBehindData.map(
-					(item) =>
-						item.weeksAheadBehind >= 0
-							? 'rgba(75, 192, 75, 0.6)' // Green for ahead
-							: 'rgba(192, 75, 75, 0.6)' // Red for behind
+				backgroundColor: weeksAheadBehindData.map((item) =>
+					item.weeksAheadBehind >= 0 ? GREEN : RED_TRANSLUCENT
 				),
-				borderColor: weeksAheadBehindData.map(
-					(item) =>
-						item.weeksAheadBehind >= 0
-							? 'rgba(75, 192, 75, 1)' // Dark green for ahead
-							: 'rgba(192, 75, 75, 1)' // Dark red for behind
+				borderColor: weeksAheadBehindData.map((item) =>
+					item.weeksAheadBehind >= 0 ? DARK_GREEN : DARK_RED
 				),
 				borderWidth: 1
 			}
