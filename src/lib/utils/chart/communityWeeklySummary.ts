@@ -63,7 +63,16 @@ export const calculateWeeklySummary = (
 			} else if (weightChange > 0) {
 				messages.push({
 					name: dieter,
-					message: `Great effort, ${dieter}! You’re moving in the right direction. Keep it up! 💪`
+					message: `Great effort, ${dieter}! You lost ${weightChange.toFixed(
+						2
+					)} kg. You’re moving in the right direction. Keep it up! 💪`
+				});
+			} else if (weightChange < 0) {
+				messages.push({
+					name: dieter,
+					message: `Don’t give up, ${dieter}! Although you gained ${Math.abs(weightChange).toFixed(
+						2
+					)} kg but every week is a fresh start, and we’re rooting for you! 🌟`
 				});
 			} else {
 				messages.push({

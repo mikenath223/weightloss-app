@@ -1,6 +1,5 @@
+import { START_DATE } from '$lib/constant/progressConstants';
 import type { WeekInfo } from '$lib/types/dateUtils';
-
-const startDate = new Date('2024-10-02');
 
 /**
  * Get the current week number and date range.
@@ -8,12 +7,12 @@ const startDate = new Date('2024-10-02');
  */
 export const getCurrentWeekInfo = (): WeekInfo => {
 	const now = new Date();
-	const diffInMilliseconds = now.getTime() - startDate.getTime();
+	const diffInMilliseconds = now.getTime() - START_DATE.getTime();
 	const diffInDays = diffInMilliseconds / (1000 * 60 * 60 * 24);
 	const weekNumber = Math.floor(diffInDays / 7) + 1;
 
-	const weekStartDate = new Date(startDate);
-	weekStartDate.setDate(startDate.getDate() + (weekNumber - 1) * 7);
+	const weekStartDate = new Date(START_DATE);
+	weekStartDate.setDate(START_DATE.getDate() + (weekNumber - 1) * 7);
 
 	const weekEndDate = new Date(weekStartDate);
 	weekEndDate.setDate(weekStartDate.getDate() + 6);

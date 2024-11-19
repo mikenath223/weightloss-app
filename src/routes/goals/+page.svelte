@@ -4,12 +4,12 @@
 	import {
 		prepareCumulativeProgressChartData,
 		prepareCumulativeProgressChartOptions
-	} from '$lib/utils/chartUtils/individualGoalsCumulativeProgress';
+	} from '$lib/utils/chart/individualGoalsCumulativeProgress';
 	import CardWData from '$lib/components/ui/CardWData.svelte';
 	import {
 		groupCumulativeProgressChartOptions,
 		prepareGroupCumulativeProgressChartData
-	} from '$lib/utils/chartUtils/groupGoalsCumulativeProgress';
+	} from '$lib/utils/chart/groupGoalsCumulativeProgress';
 
 	let { data }: { data: PageData } = $props();
 

@@ -3,7 +3,7 @@
 	import MdiPlus from 'virtual:icons/mdi/plus';
 	import MdiMenu from 'virtual:icons/mdi/menu';
 
-	import { getCurrentWeekInfo } from '$lib/utils/dateUtils';
+	import { getCurrentWeekInfo } from '$lib/utils/date';
 	import { page } from '$app/stores';
 	import Navlink from '../ui/Navlink.svelte';
 	import type { ModalSettings } from '@skeletonlabs/skeleton';

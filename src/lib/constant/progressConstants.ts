@@ -18,6 +18,7 @@ const DARK_RED = 'rgba(75, 192, 75, 1)';
 
 const weekColors = [TEAL, ORANGE, PURPLE, RED, BLUE, DARKGRAY, TEAL];
 const WEEKLY_WEIGHT_LOSS_TARGET = 0.5;
+const START_DATE = new Date('2024-10-02');
 
 export {
 	TEAL,
@@ -37,5 +38,6 @@ export {
 	GREEN,
 	RED_TRANSLUCENT,
 	DARK_GREEN,
-	DARK_RED
+	DARK_RED,
+	START_DATE
 };

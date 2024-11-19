@@ -1,13 +1,13 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import DataChart from '$lib/components/chart/DataChart.svelte';
-	import { updateWeeklyChangesChartConfig } from '$lib/utils/chartUtils/weeklyWeightChangesUtils';
-	import { rankPercentageLossChartOptions } from '$lib/utils/chartUtils/rankPercentageLoss';
-	import { weeksAheadBehindChartOptions } from '$lib/utils/chartUtils/weeksAheadBehindUtils';
+	import { updateWeeklyChangesChartConfig } from '$lib/utils/chart/weeklyWeightChangesUtils';
+	import { rankPercentageLossChartOptions } from '$lib/utils/chart/rankPercentageLoss';
+	import { weeksAheadBehindChartOptions } from '$lib/utils/chart/weeksAheadBehindUtils';
 	import GroupWeightLoss from '$lib/components/ui/GroupWeightLoss.svelte';
 	import type { ChartConfiguration } from 'chart.js';
 	import CardWData from '$lib/components/ui/CardWData.svelte';
-	import { updateWeeklyPercentageChartConfig } from '$lib/utils/chartUtils/percentageWeightChangesUtils';
+	import { updateWeeklyPercentageChartConfig } from '$lib/utils/chart/percentageWeightChangesUtils';
 
 	let { data }: { data: PageData } = $props();
 
