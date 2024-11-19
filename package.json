@@ -43,6 +43,7 @@
 		"@tailwindcss/typography": "^0.5.15",
 		"chart.js": "^4.4.6",
 		"firebase": "^11.0.2",
+		"lucide-svelte": "^0.460.1",
 		"yup": "^1.4.0"
 	}
 }

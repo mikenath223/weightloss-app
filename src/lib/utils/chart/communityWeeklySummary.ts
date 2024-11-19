@@ -26,17 +26,21 @@ export const calculateWeeklySummary = (
 	const hasDataForCurrentWeek = !!data[currentWeekStartDate];
 	const previousWeek = weeks[weeks.length - 2];
 	const hasPreviousData = weeks.some((week) => week !== currentWeekStartDate && data[week]);
+	let hasNoUserWithPreviousData = false;
+
+	const emptyData = {
+		hasDataForCurrentWeek,
+		currentWeek: currentWeekStartDate,
+		hasNoUserWithPreviousData,
+		hasPreviousData,
+		totalWeightLoss: 0,
+		topAchiever: { name: '', weightChange: 0 },
+		messages: []
+	};
 
 	// Return an empty summary if no data for the current week
 	if (!hasDataForCurrentWeek) {
-		return {
-			hasDataForCurrentWeek,
-			currentWeek: currentWeekStartDate,
-			hasPreviousData,
-			totalWeightLoss: 0,
-			topAchiever: { name: '', weightChange: 0 },
-			messages: []
-		};
+		return emptyData;
 	}
 
 	const dieters = getUniqueDieters(data);
@@ -87,9 +91,14 @@ export const calculateWeeklySummary = (
 		}
 	});
 
+	if (topAchiever.name === '') {
+		hasNoUserWithPreviousData = true;
+	}
+
 	return {
 		hasDataForCurrentWeek,
 		hasPreviousData,
+		hasNoUserWithPreviousData,
 		currentWeek: currentWeekStartDate,
 		totalWeightLoss,
 		topAchiever,
