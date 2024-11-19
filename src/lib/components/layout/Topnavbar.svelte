@@ -12,7 +12,7 @@
 	$: weekInfo = getCurrentWeekInfo();
 
 	$: classesActive = (href: string) =>
-		href === $page.url.pathname ? '!underline hover:!opacity-80' : 'opacity-80';
+		href === $page?.url?.pathname ? '!underline hover:!opacity-80' : 'opacity-80';
 
 	const modal: ModalSettings = {
 		type: 'component',

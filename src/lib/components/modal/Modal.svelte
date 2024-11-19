@@ -4,6 +4,8 @@
 	import * as yup from 'yup';
 	import LottieAnimation from '../ui/LottieAnimation.svelte';
 	import weightLottie from '$lib/assets/lottie/male-weight-lift-lottie.json';
+	import { handleSubmit } from '$lib/utils/firebase/addData';
+	import Loading from '../ui/Loading.svelte';
 
 	const modalStore = getModalStore();
 
@@ -12,6 +14,7 @@
 		weight: undefined
 	});
 	let errors: Record<string, string> = $state({});
+	let isSubmitting = $state(false);
 
 	const schema = yup.object().shape({
 		name: yup.string().required('Name is required').max(256, 'Name must not exceed 256 characters'),
@@ -25,7 +28,9 @@
 		try {
 			await schema.validate(formData, { abortEarly: false });
 			errors = {};
-
+			isSubmitting = true;
+			await handleSubmit(formData.name ?? '', formData.weight);
+			isSubmitting = false;
 			if ($modalStore[0].response) $modalStore[0].response(formData);
 			modalStore.close();
 		} catch (err) {
@@ -64,7 +69,13 @@
 					<button class="variant-ghost-surface btn" onclick={() => modalStore.close()}>
 						Cancel
 					</button>
-					<button class="variant-filled btn" onclick={onFormSubmit}> Submit </button>
+					<button class="variant-filled btn" disabled={isSubmitting} onclick={onFormSubmit}>
+						{#if isSubmitting}
+							<!-- <Loading /> -->
+						{:else}
+							Submit
+						{/if}
+					</button>
 				</footer>
 			</div>
 		</section>
