@@ -39,14 +39,14 @@ export const calculateWeeksAheadBehind = (
 			const previousWeight = data[weeks[index - 1]][dieter];
 
 			if (currentWeight !== undefined && previousWeight !== undefined) {
-				totalWeightLost += previousWeight - currentWeight; // Accumulate weight lost
+				totalWeightLost += previousWeight - currentWeight;
 			}
 		});
 
 		// Calculate weeks ahead/behind
 		const weeksAheadBehind = totalWeightLost / targetPerWeek - numWeeks;
 
-		return { name: dieter, weeksAheadBehind: weeksAheadBehind || 0 }; // Default to 0 if no data
+		return { name: dieter, weeksAheadBehind: weeksAheadBehind || 0 };
 	});
 
 	return results;
