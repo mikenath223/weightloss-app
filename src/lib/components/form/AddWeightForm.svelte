@@ -11,6 +11,12 @@
 		name: undefined,
 		weight: undefined
 	});
+
+	const sanitizedFormData = $derived({
+		name: (formData.name || '')?.trim(),
+		weight: formData.weight
+	});
+
 	let errors: Record<string, string> = $state({});
 	let isSubmitting = $state(false);
 
@@ -30,14 +36,15 @@
 		}, {});
 	}
 
-	async function onFormSubmit(): Promise<void> {
+	async function onFormSubmit(e: Event): Promise<void> {
+		e.preventDefault();
 		try {
-			await schema.validate(formData, { abortEarly: false });
+			await schema.validate(sanitizedFormData, { abortEarly: false });
 			errors = {};
 			isSubmitting = true;
-			await handleSubmit(formData.name ?? '', toastStore, formData.weight);
+			await handleSubmit(sanitizedFormData.name ?? '', toastStore, sanitizedFormData.weight);
 			isSubmitting = false;
-			if ($modalStore[0].response) $modalStore[0].response(formData);
+			if ($modalStore[0].response) $modalStore[0].response(sanitizedFormData);
 			modalStore.close();
 		} catch (err) {
 			errors = extractErrors(err);
