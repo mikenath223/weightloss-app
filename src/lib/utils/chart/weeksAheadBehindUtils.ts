@@ -29,7 +29,6 @@ export const calculateWeeksAheadBehind = (
 
 	const dieters = getUniqueDieters(data);
 
-	// Aggregate total weight loss for each dieter
 	const results = dieters.map((dieter) => {
 		let totalWeightLost = 0;
 
@@ -52,6 +51,18 @@ export const calculateWeeksAheadBehind = (
 	return results;
 };
 
+/**
+ * Prepares chart data for visualizing the number of weeks each dieter is
+ * ahead or behind their weight loss target.
+ *
+ * The chart data includes labels for each dieter and a dataset representing
+ * the weeks ahead or behind target. The color of the bars reflects whether
+ * the dieter is on track (green) or behind (red).
+ *
+ * @param weeksAheadBehindData - An array of objects where each object contains
+ * the dieter's name and the number of weeks they are ahead or behind their target.
+ * @returns An object containing the chart data with formatted labels and datasets.
+ */
 export const prepareWeeksAheadBehindChartData = (
 	weeksAheadBehindData: { name: string; weeksAheadBehind: number }[]
 ) => {
