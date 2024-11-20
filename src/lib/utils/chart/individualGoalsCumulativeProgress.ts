@@ -1,7 +1,6 @@
 import {
 	RED_SOLID,
 	RED_TRANSPARENT,
-	TEAL,
 	TEAL_SOLID,
 	TEAL_TRANSPARENT
 } from '$lib/constant/progressConstants';
@@ -44,7 +43,7 @@ export const calculateCumulativeProgress = (
 			}
 
 			cumulativeLoss.push(totalLoss);
-			targetLoss.push(index * targetPerWeek); // Target is cumulative
+			targetLoss.push(index * targetPerWeek);
 		};
 
 	/**
@@ -170,14 +169,14 @@ export const prepareCumulativeProgressChartOptions = {
 					size: 14
 				}
 			},
-			beginAtZero: false, // Allow negative values for weight gain scenarios
+			beginAtZero: false,
 			ticks: {
-				stepSize: 5 // Adjust based on the expected range of weight loss
+				stepSize: 5
 			}
 		}
 	},
 	interaction: {
-		mode: 'index', // Highlight both lines when hovering over the same x-value
-		intersect: false // Ensure hovering near a point shows tooltips for both lines
+		mode: 'index',
+		intersect: false
 	}
 };

@@ -38,7 +38,7 @@ export const prepareRankChartData = (
 	rankedData: { name: string; totalPercentageLoss: number }[]
 ) => {
 	return {
-		labels: rankedData.map((item) => item.name), // Dieters' names
+		labels: rankedData.map((item) => item.name),
 		datasets: [
 			{
 				label: 'Percentage Loss',

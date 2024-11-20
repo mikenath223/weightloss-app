@@ -10,9 +10,9 @@ import { getUniqueDieters } from '../dieters';
 /**
  * Calculates the number of weeks each dieter is ahead or behind their weight loss target.
  *
- * This function computes the total weight loss for each dieter across all weeks
+ * This function computes the total weight loss for each dieter from their first recorded week
  * and compares it to their cumulative target loss. The result is expressed in terms
- * of weeks ahead or behind the target.
+ * of weeks ahead or behind the target, relative to their individual start week.
  *
  * @param data - A record where keys are week dates and values are objects
  * containing dieter names as keys and their weight data as values.
@@ -25,25 +25,40 @@ export const calculateWeeksAheadBehind = (
 	targetPerWeek: number
 ) => {
 	const weeks = Object.keys(data);
-	const numWeeks = weeks.length;
-
 	const dieters = getUniqueDieters(data);
 
 	const results = dieters.map((dieter) => {
 		let totalWeightLost = 0;
+		let firstWeekIndex = -1;
+		let lastWeekIndex = -1;
+		let startingWeight: number | undefined;
 
 		weeks.forEach((week, index) => {
-			if (index === 0) return; // Skip Week 1
+			const currentWeight = data[week][dieter];
+			if (currentWeight !== undefined) {
+				if (firstWeekIndex === -1) {
+					firstWeekIndex = index;
+					startingWeight = currentWeight;
+				}
+				lastWeekIndex = index;
+			}
+		});
+
+		if (firstWeekIndex === -1 || lastWeekIndex === -1 || startingWeight === undefined) {
+			return { name: dieter, weeksAheadBehind: 0 };
+		}
+
+		for (let index = firstWeekIndex + 1; index <= lastWeekIndex; index++) {
 			const currentWeight = data[weeks[index]][dieter];
 			const previousWeight = data[weeks[index - 1]][dieter];
 
 			if (currentWeight !== undefined && previousWeight !== undefined) {
 				totalWeightLost += previousWeight - currentWeight;
 			}
-		});
+		}
 
-		// Calculate weeks ahead/behind
-		const weeksAheadBehind = totalWeightLost / targetPerWeek - numWeeks;
+		const numRelevantWeeks = lastWeekIndex - firstWeekIndex;
+		const weeksAheadBehind = totalWeightLost / targetPerWeek - numRelevantWeeks;
 
 		return { name: dieter, weeksAheadBehind: weeksAheadBehind || 0 };
 	});
@@ -85,7 +100,7 @@ export const prepareWeeksAheadBehindChartData = (
 };
 
 export const weeksAheadBehindChartOptions = {
-	indexAxis: 'y', // Horizontal bars
+	indexAxis: 'y',
 	responsive: true,
 	maintainAspectRatio: false,
 	plugins: {

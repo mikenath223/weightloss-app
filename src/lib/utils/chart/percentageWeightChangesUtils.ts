@@ -119,7 +119,7 @@ export const updateWeeklyPercentageChartConfig = (
 		},
 		scales: {
 			x: {
-				beginAtZero: true, // Allow negative and positive values
+				beginAtZero: true,
 				title: {
 					display: true,
 					text: 'Percentage Change (%)'
