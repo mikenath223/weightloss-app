@@ -30,17 +30,17 @@
 		)
 	);
 
-	const rankPercentageLostChartConfig = {
+	const rankPercentageLostChartConfig = $derived({
 		type: 'bar',
 		data: data.rankChartData,
 		options: rankPercentageLossChartOptions
-	};
+	});
 
-	const weeksAheadBehindChartConfig = {
+	const weeksAheadBehindChartConfig = $derived({
 		type: 'bar',
 		data: data.weeksAheadBehindChartData,
 		options: weeksAheadBehindChartOptions
-	};
+	});
 </script>
 
 <section class="progress-page min-h-screen space-y-16 py-10">

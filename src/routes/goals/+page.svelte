@@ -22,11 +22,11 @@
 		options: prepareCumulativeProgressChartOptions
 	});
 
-	const groupCumulativeChartConfig = {
+	const groupCumulativeChartConfig = $derived({
 		type: 'line',
 		data: prepareGroupCumulativeProgressChartData(data.groupCumulativeProgress),
 		options: groupCumulativeProgressChartOptions
-	};
+	});
 </script>
 
 <section class="goals-page min-h-screen px-6 py-10">
