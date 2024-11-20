@@ -38,20 +38,20 @@ yarn install
 
 3. ## Configure Firebase
 
-3.1 ### Create a New Project
+3.1 **Create a New Project**
 
 Create a new project in [Firebase Console](https://console.firebase.google.com/).
 
-3.2 ### Enable Firestore Database
+3.2 **Enable Firestore Database**
 
 Enable **Firestore Database** (in **test mode** for development).
 
-3.3 ### Generate Firebase Configuration
+3.3 **Generate Firebase Configuration**
 
 1. Navigate to **Project Settings** > **General** > **Your apps** > **SDK setup and configuration**.
 2. Copy the Firebase config object (e.g., `apiKey`, `authDomain`, etc.).
 
-3.4 ### Add Firebase Configuration to Environment Variables
+3.4 **Add Firebase Configuration to Environment Variables**
 
 - Create a `.env` file in the root directory:
 
@@ -79,7 +79,7 @@ VITE_APP_ID=<your-app-id>
 yarn dev --open
 ```
 
-4.2.Open your browser at [http://localhost:5173](http://localhost:5173).
+4.2 Open your browser at [http://localhost:5173](http://localhost:5173).
 
 5. ## Build for Production
 
