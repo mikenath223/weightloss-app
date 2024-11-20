@@ -10,7 +10,7 @@ export const calculateRankByPercentageLoss = (
 ) => {
 	const aggregated = dieters.map((dieter) => {
 		const totalPercentageLoss = percentageChanges.reduce((sum, week) => {
-			return sum + (week?.[dieter] ?? 0); // Sum up all percentage changes
+			return sum + (week?.[dieter] ?? 0);
 		}, 0);
 
 		return { name: dieter, totalPercentageLoss };
@@ -44,7 +44,7 @@ export const prepareRankChartData = (
 				label: 'Percentage Loss',
 				data: rankedData.map((item) => item.totalPercentageLoss),
 				backgroundColor: rankedData.map(
-					(_, index) => `hsl(${(index / rankedData.length) * 360}, 70%, 60%)` // Gradient colors
+					(_, index) => `hsl(${(index / rankedData.length) * 360}, 70%, 60%)`
 				),
 				borderColor: 'rgba(0, 0, 0, 0.1)',
 				borderWidth: 1
@@ -54,7 +54,7 @@ export const prepareRankChartData = (
 };
 
 export const rankPercentageLossChartOptions = {
-	indexAxis: 'y', // Horizontal bars
+	indexAxis: 'y',
 	responsive: true,
 	maintainAspectRatio: false,
 	plugins: {

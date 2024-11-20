@@ -25,15 +25,11 @@ export const calculateWeeklyPercentageChange = (
 	return calculateWeeklyChanges(
 		data,
 		(currentWeight: number | undefined, previousWeight: number | undefined) => {
-			if (
-				currentWeight !== undefined &&
-				previousWeight !== undefined &&
-				previousWeight !== 0 // Avoid division by zero
-			) {
+			if (currentWeight !== undefined && previousWeight !== undefined && previousWeight !== 0) {
 				const percentageChange = ((currentWeight - previousWeight) / previousWeight) * 100;
 				return percentageChange;
 			}
-			return undefined; // No change if data is missing
+			return undefined;
 		}
 	);
 };
@@ -61,7 +57,7 @@ export const prepareWeeklyPercentageChartData = (
 	);
 
 	return {
-		labels: weeks.slice(1), // Start from Week 2 since Week 1 has no comparison
+		labels: weeks.slice(1),
 		datasets: [
 			{
 				label: `Weekly Percentage Changes for ${selectedDieter}`,
@@ -100,7 +96,7 @@ export const updateWeeklyPercentageChartConfig = (
 	type: 'bar',
 	data: prepareWeeklyPercentageChartData(weeklyPercentageChanges, weeks, selectedDieter),
 	options: {
-		indexAxis: 'y', // Horizontal bar chart
+		indexAxis: 'y',
 		responsive: true,
 		maintainAspectRatio: false,
 		plugins: {

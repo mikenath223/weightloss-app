@@ -112,7 +112,7 @@ export const prepareCumulativeProgressChartData = (
 				borderColor: RED_SOLID,
 				backgroundColor: RED_TRANSPARENT,
 				fill: true,
-				borderDash: [5, 5] // Dashed line
+				borderDash: [5, 5]
 			}
 		]
 	};

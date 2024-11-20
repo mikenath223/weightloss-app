@@ -40,14 +40,13 @@ export const calculateGroupCumulativeProgress = (
 			const previousWeight = data[weeks[index - 1]][dieter];
 
 			if (currentWeight !== undefined && previousWeight !== undefined) {
-				weeklyTotalLoss += previousWeight - currentWeight; // Calculate loss for the week
+				weeklyTotalLoss += previousWeight - currentWeight;
 			}
 		});
 
 		totalCumulativeLoss += weeklyTotalLoss;
 		groupCumulativeLoss.push(totalCumulativeLoss);
 
-		// Group target progress assumes all dieters hit their weekly target
 		const totalTargetPerWeek = targetPerWeek * dieters.length;
 		groupTargetLoss.push(index * totalTargetPerWeek);
 	});
@@ -86,11 +85,11 @@ export const prepareGroupCumulativeProgressChartData = (groupProgress: {
 			},
 			{
 				label: 'Group Target Loss',
-				data: groupProgress.groupTargetLoss, // Group target progress
+				data: groupProgress.groupTargetLoss,
 				borderColor: RED,
 				backgroundColor: RED_TRANSPARENT,
 				fill: true,
-				borderDash: [5, 5] // Dashed line
+				borderDash: [5, 5]
 			}
 		]
 	};

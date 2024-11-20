@@ -21,9 +21,9 @@ export const calculateWeeklyChanges = (
 	const dieters = getUniqueDieters(data);
 
 	const weeklyChanges: Record<string, number | undefined>[] = [];
+	const secondWeek = 1;
 
-	// Loop through each week starting from Week 2
-	for (let i = 1; i < weeks.length; i++) {
+	for (let i = secondWeek; i < weeks.length; i++) {
 		const currentWeek = data[weeks[i]];
 		const previousWeek = data[weeks[i - 1]];
 
@@ -83,13 +83,14 @@ export const prepareWeeklyChangesChartData = (
 	selectedDieter: string
 ) => {
 	const dieterChanges = weeklyChanges.map((weekChange) => weekChange[selectedDieter] ?? 0);
+	const weeksFromSecondWeek = weeks.slice(1);
 
 	return {
-		labels: weeks.slice(1), // Start from Week 2 since Week 1 has no comparison
+		labels: weeksFromSecondWeek,
 		datasets: [
 			{
 				label: `Weekly Weight Changes for ${selectedDieter}`,
-				data: dieterChanges, // Changes for the selected dieter
+				data: dieterChanges,
 				backgroundColor: dieterChanges.map((change) =>
 					change < 0 ? 'rgba(75, 192, 192, 0.8)' : 'rgba(255, 99, 132, 0.8)'
 				),
@@ -122,7 +123,7 @@ export const updateWeeklyChangesChartConfig = (
 	type: 'bar',
 	data: prepareWeeklyChangesChartData(weeklyChanges, weeks, selectedDieter),
 	options: {
-		indexAxis: 'y', // Horizontal bar chart
+		indexAxis: 'y',
 		responsive: true,
 		maintainAspectRatio: false,
 		plugins: {

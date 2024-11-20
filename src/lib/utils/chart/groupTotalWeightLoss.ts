@@ -7,7 +7,7 @@
 export const calculateGroupTotalWeightLoss = (
 	data: Record<string, Record<string, number | undefined>>
 ) => {
-	const weeks = Object.keys(data); // All weeks
+	const weeks = Object.keys(data);
 	const groupTotals: { week: string; totalLoss: number }[] = [];
 
 	for (let i = 1; i < weeks.length; i++) {
@@ -21,7 +21,7 @@ export const calculateGroupTotalWeightLoss = (
 			const previousWeight = previousWeek[dieter];
 
 			if (currentWeight !== undefined && previousWeight !== undefined) {
-				totalLoss += previousWeight - currentWeight; // Accumulate weight loss
+				totalLoss += previousWeight - currentWeight;
 			}
 		});
 
