@@ -4,6 +4,12 @@ An engaging and user-friendly application to track and encourage weekly weight l
 
 ---
 
+## **Live Link**
+
+The app is hosted on Netlify and can be accessed at: https://weightloss-aggregator.netlify.app/
+
+---
+
 ## **Features**
 - **Data Tracking**: Allows users to input weekly weight data and calculates individual and group progress.
 - **Visualizations**: Trend graphs for individual and group progress, weekly weight changes, and rankings.
