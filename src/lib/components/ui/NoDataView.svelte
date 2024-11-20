@@ -1,8 +1,10 @@
 <script lang="ts">
 	import LottieAnimation from '$lib/components/ui/LottieAnimation.svelte';
 	import AddWeightBtn from '$lib/components/ui/AddWeightBtn.svelte';
-	import { Trophy, Star, ChartSpline, Target } from 'lucide-svelte';
+	import { Trophy, ChartSpline, Target } from 'lucide-svelte';
 	import planksLottie from '$lib/assets/lottie/planks-exercise-lottie.json';
+	import ProInfoTip from './ProInfoTip.svelte';
+	import Button from './Button.svelte';
 
 	let {
 		onAddProgress = () => {},
@@ -12,7 +14,9 @@
 </script>
 
 <div class="container mx-auto">
-	<div class="rounded-2xl bg-gradient-to-br from-indigo-50 to-blue-100 shadow-lg">
+	<div
+		class="mx-auto max-w-3xl rounded-2xl border bg-gradient-to-br from-substrate to-body-light-1 shadow-lg"
+	>
 		<div class="flex flex-col-reverse gap-3 p-4 md:grid md:grid-cols-2 md:p-8 lg:p-12">
 			<div class="flex flex-col space-y-6 text-center md:text-left">
 				{#if currentWeekData && !hasNoUserWithPreviousData}
@@ -41,26 +45,19 @@
 
 				<div class="flex flex-col items-center justify-center gap-3 sm:flex-row md:justify-start">
 					<AddWeightBtn onclick={onAddProgress} />
-					<a
-						href="/progress"
-						class="variant-outline-secondary btn flex items-center justify-center"
-					>
-						<ChartSpline size={20} />
-						<span>View Progress</span>
-					</a>
+					<Button className="variant-outline-secondary btn">
+						<a class="flex items-center gap-2" href="/progress">
+							<ChartSpline size={20} />
+							<span>View Progress</span>
+						</a>
+					</Button>
 				</div>
 
 				{#if hasNoUserWithPreviousData}
-					<div class="mt-4 border-l-4 border-yellow-500 bg-yellow-50 p-3">
-						<div class="flex items-center space-x-2">
-							<Star class="text-yellow-600" />
-							<h4 class="font-semibold text-yellow-800">Pro Tip</h4>
-						</div>
-						<p class="mt-1 text-xs text-yellow-700">
-							Consistent tracking is key. Log your weight at the same time each week for accurate
-							results.
-						</p>
-					</div>
+					<ProInfoTip
+						info="Consistent tracking is key. Log your weight at the same time each week for accurate
+    results."
+					/>
 				{/if}
 			</div>
 

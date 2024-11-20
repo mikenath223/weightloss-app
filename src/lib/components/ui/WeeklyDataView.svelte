@@ -1,26 +1,31 @@
 <script lang="ts">
-	import TopAchiever from '$lib/components/ui/TopAchiever.svelte';
-	import GroupSummary from '$lib/components/ui/GroupSummary.svelte';
-	import MotivationalMessage from '$lib/components/ui/MotivationalMessage.svelte';
+	import TopAchiever from './TopAchiever.svelte';
+	import GroupSummary from './GroupSummary.svelte';
+	import ProInfoTip from './ProInfoTip.svelte';
+	import MotivationalMessage from './MotivationalMessage.svelte';
 
 	let { weeklyData } = $props();
 </script>
 
-<section class="space-y-8">
-	<TopAchiever
-		name={weeklyData.topAchiever.name}
-		isWeightGreaterThanZero={weeklyData.topAchiever.weightChange > 0}
-		weightChange={weeklyData.topAchiever.weightChange.toFixed(2)}
-	/>
-
-	<GroupSummary
-		isWeightGreaterThanZero={weeklyData.totalWeightLoss > 0}
-		weightLoss={weeklyData.totalWeightLoss.toFixed(2)}
-	/>
-
-	<section class="motivational-messages grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-		{#each weeklyData.messages as { name, message }}
-			<MotivationalMessage {name} {message} />
-		{/each}
-	</section>
-</section>
+<div class="container mx-auto bg-gradient-to-br from-blue-50 to-white px-4 py-8">
+	<div class="mx-auto max-w-4xl space-y-8">
+		<TopAchiever
+			name={weeklyData.topAchiever.name}
+			isWeightGreaterThanZero={weeklyData.topAchiever.weightChange > 0}
+			weightChange={weeklyData.topAchiever.weightChange}
+		/>
+		<GroupSummary
+			isWeightGreaterThanZero={weeklyData.totalWeightLoss > 0}
+			weightLoss={weeklyData.totalWeightLoss.toFixed(2)}
+		/>
+		<ProInfoTip
+			info="A new user with no previous week data won't have any result! Consistent tracking is key. Log
+		your weight at the same time each week for accurate results."
+		/>
+		<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+			{#each weeklyData.messages as { name, message }}
+				<MotivationalMessage {name} {message} />
+			{/each}
+		</div>
+	</div>
+</div>

@@ -3,8 +3,8 @@
 </script>
 
 <div
-	class="message-card rounded-lg bg-blue-50 p-6 shadow-lg transition-shadow duration-300 hover:shadow-2xl"
+	class="transform rounded-2xl bg-blue-50 p-6 shadow-md transition-all hover:-translate-y-2 hover:shadow-xl"
 >
-	<h3 class="text-2xl font-bold text-blue-900">{name}</h3>
-	<p class="mt-4 text-lg text-gray-800">{message}</p>
+	<h4 class="mb-4 text-2xl font-bold text-blue-900">{name}</h4>
+	<p class="text-gray-700">{message}</p>
 </div>

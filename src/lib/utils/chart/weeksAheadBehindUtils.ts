@@ -79,7 +79,7 @@ export const weeksAheadBehindChartOptions = {
 	maintainAspectRatio: false,
 	plugins: {
 		legend: {
-			display: false // No legend needed
+			display: false
 		},
 		title: {
 			display: true,
@@ -88,7 +88,7 @@ export const weeksAheadBehindChartOptions = {
 		tooltip: {
 			callbacks: {
 				label: (tooltipItem: { raw: number }) =>
-					`${tooltipItem.raw > 0 ? '+' : ''}${tooltipItem.raw.toFixed(2)} weeks` // Format tooltip
+					`${tooltipItem.raw > 0 ? '+' : ''}${tooltipItem.raw.toFixed(2)} weeks ${tooltipItem.raw > 0 ? 'ahead' : 'behind'}`
 			}
 		}
 	},

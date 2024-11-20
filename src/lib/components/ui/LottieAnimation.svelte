@@ -3,10 +3,10 @@
 	import { LottiePlayer } from '@lottiefiles/svelte-lottie-player';
 	import Loading from './Loading.svelte';
 
-	let { src, height, width, className } = $props();
+	let { src, height, width, className = '' } = $props();
 </script>
 
-<div class="flex min-h-56 items-center {className}">
+<div class="flex min-h-56 items-center justify-center {className}">
 	{#if browser}
 		<LottiePlayer
 			{src}
