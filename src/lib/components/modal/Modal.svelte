@@ -17,7 +17,7 @@
 				<LottieAnimation src={weightLottie} width={350} height={350} />
 			</div>
 			<div class="space-y-4 px-10 py-10 md:px-0 md:pl-5 md:pr-16">
-				<header class={cHeader}>Add Dieter's Weight</header>
+				<header class="text-indigo-700 drop-shadow-md {cHeader}">Add Dieter's Weight</header>
 				<article>Want to add a new weight? Sure, go right ahead!</article>
 				<AddWeightForm />
 			</div>

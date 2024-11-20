@@ -81,7 +81,7 @@
 		<button class="variant-ghost-surface btn" type="button" onclick={() => modalStore.close()}>
 			Cancel
 		</button>
-		<button class="variant-filled btn" type="submit" disabled={isSubmitting}>
+		<button class="variant-filled-secondary btn" type="submit" disabled={isSubmitting}>
 			Submit
 			{#if isSubmitting}
 				<Loading />
