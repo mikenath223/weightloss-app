@@ -3,14 +3,12 @@ import { data } from '$lib/constant/mockData';
 import { db } from './config';
 
 /**
- * Loads mock data from the $lib/constant/mockData constant into the
- * "weeklyData" collection in the Firestore database.
+ * Loads mock data into the Firebase Firestore.
  *
- * This function is intended to be run as a script from the command line,
- * and will exit the process when complete.
- *
- * If the "weeklyData" collection already contains data, this function will
- * exit without doing anything.
+ * @remarks
+ * The `loadMockData` function loads the mock data defined in `mockData.ts` into the Firebase Firestore.
+ * If the "weeklyData" collection already contains data, it will not overwrite it.
+ * If there is an error while loading the mock data, it will log an error message.
  */
 export const loadMockData = async () => {
 	try {
