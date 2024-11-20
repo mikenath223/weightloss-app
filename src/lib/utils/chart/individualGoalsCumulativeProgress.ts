@@ -1,5 +1,4 @@
 import {
-	RED,
 	RED_SOLID,
 	RED_TRANSPARENT,
 	TEAL,
