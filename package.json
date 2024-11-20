@@ -10,8 +10,7 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
 		"lint": "prettier --check . && eslint .",
-		"prepack": "svelte-kit sync",
-		"load:mock-data": "node src/lib/utils/firebase/loadMockData.js"
+		"prepack": "svelte-kit sync"
 	},
 	"devDependencies": {
 		"@iconify-json/mdi": "^1.2.1",
@@ -44,6 +43,7 @@
 		"@tailwindcss/typography": "^0.5.15",
 		"chart.js": "^4.4.6",
 		"firebase": "^11.0.2",
+		"lucide-svelte": "^0.460.1",
 		"yup": "^1.4.0"
 	}
 }

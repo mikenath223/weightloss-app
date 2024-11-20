@@ -20,21 +20,27 @@ import { getUniqueDieters } from '../dieters';
  */
 export const calculateWeeklySummary = (
 	data: Record<string, Record<string, number | undefined>>,
-	currentWeek: string
+	currentWeekStartDate: string
 ) => {
 	const weeks = Object.keys(data);
-	const hasDataForCurrentWeek = weeks.includes(currentWeek);
+	const hasDataForCurrentWeek = !!data[currentWeekStartDate];
 	const previousWeek = weeks[weeks.length - 2];
+	const hasPreviousData = weeks.some((week) => week !== currentWeekStartDate && data[week]);
+	let hasNoUserWithPreviousData = false;
+
+	const emptyData = {
+		hasDataForCurrentWeek,
+		currentWeek: currentWeekStartDate,
+		hasNoUserWithPreviousData,
+		hasPreviousData,
+		totalWeightLoss: 0,
+		topAchiever: { name: '', weightChange: 0 },
+		messages: []
+	};
 
 	// Return an empty summary if no data for the current week
 	if (!hasDataForCurrentWeek) {
-		return {
-			hasDataForCurrentWeek,
-			currentWeek,
-			totalWeightLoss: 0,
-			topAchiever: { name: '', weightChange: 0 },
-			messages: []
-		};
+		return emptyData;
 	}
 
 	const dieters = getUniqueDieters(data);
@@ -44,7 +50,7 @@ export const calculateWeeklySummary = (
 	const messages: { name: string; message: string }[] = [];
 
 	dieters.forEach((dieter) => {
-		const currentWeight = data[currentWeek][dieter];
+		const currentWeight = data[currentWeekStartDate][dieter];
 		const previousWeight = data[previousWeek]?.[dieter];
 
 		if (currentWeight !== undefined && previousWeight !== undefined) {
@@ -85,9 +91,15 @@ export const calculateWeeklySummary = (
 		}
 	});
 
+	if (topAchiever.name === '') {
+		hasNoUserWithPreviousData = true;
+	}
+
 	return {
 		hasDataForCurrentWeek,
-		currentWeek,
+		hasPreviousData,
+		hasNoUserWithPreviousData,
+		currentWeek: currentWeekStartDate,
 		totalWeightLoss,
 		topAchiever,
 		messages

@@ -16,7 +16,6 @@ export const calculateRankByPercentageLoss = (
 		return { name: dieter, totalPercentageLoss };
 	});
 
-	// Sort by totalPercentageLoss (descending)
 	const sorted = aggregated.sort((a, b) => b.totalPercentageLoss - a.totalPercentageLoss);
 
 	return sorted;
@@ -43,7 +42,7 @@ export const prepareRankChartData = (
 		datasets: [
 			{
 				label: 'Percentage Loss',
-				data: rankedData.map((item) => item.totalPercentageLoss), // Loss values
+				data: rankedData.map((item) => item.totalPercentageLoss),
 				backgroundColor: rankedData.map(
 					(_, index) => `hsl(${(index / rankedData.length) * 360}, 70%, 60%)` // Gradient colors
 				),

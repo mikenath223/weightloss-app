@@ -1,7 +1,7 @@
 <script lang="ts">
-	let { onclick, className, children, ...restOfProps } = $props();
+	let { className = '', children, ...restOfProps } = $props();
 </script>
 
-<button class="ml-auto md:hidden {className}" type="button" {onclick} {...restOfProps}>
+<button class={className} {...restOfProps}>
 	{@render children()}
 </button>

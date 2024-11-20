@@ -1,3 +1,10 @@
+import {
+	RED_SOLID,
+	RED_TRANSPARENT,
+	TEAL,
+	TEAL_SOLID,
+	TEAL_TRANSPARENT
+} from '$lib/constant/progressConstants';
 import { getUniqueDieters } from '../dieters';
 
 export const calculateCumulativeProgress = (
@@ -96,15 +103,15 @@ export const prepareCumulativeProgressChartData = (
 			{
 				label: 'Cumulative Progress',
 				data: dieterData.cumulativeLoss,
-				borderColor: 'rgba(75, 192, 192, 1)', // Teal
-				backgroundColor: 'rgba(75, 192, 192, 0.2)', // Teal (transparent)
+				borderColor: TEAL_SOLID,
+				backgroundColor: TEAL_TRANSPARENT,
 				fill: true
 			},
 			{
 				label: 'Target Progress',
 				data: dieterData.targetLoss,
-				borderColor: 'rgba(192, 75, 75, 1)', // Red
-				backgroundColor: 'rgba(192, 75, 75, 0.2)', // Red (transparent)
+				borderColor: RED_SOLID,
+				backgroundColor: RED_TRANSPARENT,
 				fill: true,
 				borderDash: [5, 5] // Dashed line
 			}
@@ -117,10 +124,10 @@ export const prepareCumulativeProgressChartOptions = {
 	maintainAspectRatio: false,
 	plugins: {
 		legend: {
-			position: 'bottom', // Show the legend above the chart
+			position: 'bottom',
 			labels: {
 				font: {
-					size: 12 // Adjust font size for readability
+					size: 12
 				}
 			}
 		},
@@ -128,14 +135,14 @@ export const prepareCumulativeProgressChartOptions = {
 			display: true,
 			text: 'Individual Cumulative Progress vs Target',
 			font: {
-				size: 16, // Title font size
+				size: 16,
 				weight: 'bold'
 			}
 		},
 		tooltip: {
 			callbacks: {
 				label: (tooltipItem: { raw: any; dataset: { label: any } }) => {
-					const value = tooltipItem.raw; // Value for the hovered point
+					const value = tooltipItem.raw;
 					return `${tooltipItem.dataset.label}: ${value.toFixed(2)} kg`;
 				}
 			}
@@ -151,8 +158,8 @@ export const prepareCumulativeProgressChartOptions = {
 				}
 			},
 			ticks: {
-				autoSkip: true, // Skip ticks to avoid clutter
-				maxRotation: 0 // Keep tick labels horizontal
+				autoSkip: true,
+				maxRotation: 0
 			}
 		},
 		y: {

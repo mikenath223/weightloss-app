@@ -1,6 +1,5 @@
 <script lang="ts">
 	import celebrateEmoji from '$lib/assets/icons/party-popper.png';
-	import MdiPlus from 'virtual:icons/mdi/plus';
 	import MdiMenu from 'virtual:icons/mdi/menu';
 	import { getCurrentWeekInfo } from '$lib/utils/date';
 	import { page } from '$app/stores';
@@ -10,6 +9,7 @@
 	import { getDrawerStore } from '@skeletonlabs/skeleton';
 	import { NAV_LINKS } from '$lib/constant/progressConstants';
 	import Button from '../ui/Button.svelte';
+	import AddWeightBtn from '../ui/AddWeightBtn.svelte';
 
 	$: weekInfo = getCurrentWeekInfo();
 
@@ -44,11 +44,11 @@
 	class="fixed top-0 z-10 flex w-full items-center justify-between bg-gradient-to-r from-pink-300 to-yellow-200 px-6 py-4 shadow-md"
 >
 	<div class="flex flex-col">
-		<h4 class="flex items-center gap-2 text-gray-700">
-			<span class="font-bold text-indigo-600">Week {weekInfo.weekNumber}</span>
-			<span class="text-sm italic text-gray-600">{weekInfo.weekRange}</span>
+		<h4 class="h4 flex items-center gap-2 text-gray-700">
+			<span class="text-xs font-bold text-indigo-600 sm:text-xl">Week {weekInfo.weekNumber}</span>
+			<span class="text-xs italic text-gray-600 sm:text-xl">{weekInfo.weekRange}</span>
 		</h4>
-		<h1 class="flex items-center gap-2 text-2xl font-extrabold text-gray-900">
+		<h1 class="flex items-center gap-2 text-base font-extrabold text-gray-900 sm:text-2xl">
 			<span>Welcome, Dieters!</span>
 			<img class="size-8" src={celebrateEmoji} alt="Celebration Icon" />
 		</h1>
@@ -58,14 +58,7 @@
 		{#each NAV_LINKS as { name, path }}
 			<Navlink {classesActive} navLink={path} navText={name} />
 		{/each}
-		<button
-			type="button"
-			class="flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-white shadow-md hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-300"
-			onclick={onClickOpenModal}
-		>
-			<MdiPlus class="size-5" />
-			<span>Add Weight</span>
-		</button>
+		<AddWeightBtn onclick={onClickOpenModal} />
 	</div>
 
 	<Button

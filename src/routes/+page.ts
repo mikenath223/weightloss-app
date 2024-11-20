@@ -7,6 +7,7 @@ export const load = async ({ parent }) => {
 	const weekInfo = getCurrentWeekInfo();
 
 	const weeklySummary = calculateWeeklySummary(data, weekInfo.weekRange.split(' to ')[0]);
+
 	return {
 		weeklySummary,
 		weekInfo

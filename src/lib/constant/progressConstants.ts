@@ -4,6 +4,7 @@ const ORANGE = 'rgba(255, 159, 64, 0.6)';
 const PURPLE = 'rgba(153, 102, 255, 0.6)';
 const RED = 'rgba(255, 99, 132, 0.6)';
 const RED_TRANSPARENT = 'rgba(192, 75, 75, 0.2)';
+const RED_SOLID = 'rgba(192, 75, 75, 1)';
 const BLUE = 'rgba(54, 162, 235, 0.6)';
 const YELLOW = 'rgba(255, 206, 86, 0.6)';
 const DARKGRAY = 'rgba(128, 128, 128, 0.6)';
@@ -54,6 +55,7 @@ export {
 	RED_TRANSLUCENT,
 	DARK_GREEN,
 	DARK_RED,
+	RED_SOLID,
 	START_DATE,
 	NAV_LINKS
 };

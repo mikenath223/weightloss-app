@@ -55,10 +55,11 @@ export const calculateWeeklyWeightChange = (
 	data: Record<string, Record<string, number | undefined>>
 ) => {
 	return calculateWeeklyChanges(data, (currentWeight, previousWeight) => {
-		if (currentWeight !== undefined && previousWeight !== undefined) {
+		const isDataMissing = currentWeight !== undefined && previousWeight !== undefined;
+		if (isDataMissing) {
 			return currentWeight - previousWeight;
 		}
-		return undefined; // Return undefined if data is missing
+		return undefined;
 	});
 };
 

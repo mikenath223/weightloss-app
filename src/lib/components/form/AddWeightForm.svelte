@@ -18,6 +18,7 @@
 		name: yup.string().required('Name is required').max(256, 'Name must not exceed 256 characters'),
 		weight: yup
 			.number()
+			.nullable()
 			.min(1, 'Weight must be at least 1 kg')
 			.max(1000, 'Weight must not exceed 1000 kg')
 	});
@@ -53,6 +54,7 @@
 			class="input"
 			maxlength="256"
 			type="text"
+			required
 			bind:value={formData.name}
 			placeholder="Enter name..."
 		/>
@@ -65,8 +67,9 @@
 		<input
 			class="input"
 			type="number"
-			max="500"
+			max="1000"
 			min="1"
+			required={false}
 			bind:value={formData.weight}
 			placeholder="Enter weight..."
 		/>
