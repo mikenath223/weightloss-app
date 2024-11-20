@@ -45,10 +45,10 @@
 >
 	<div class="flex flex-col">
 		<h4 class="h4 flex items-center gap-2 text-gray-700">
-			<span class="text-xs font-bold text-indigo-600 sm:text-xl">Week {weekInfo.weekNumber}</span>
-			<span class="text-xs italic text-gray-600 sm:text-xl">{weekInfo.weekRange}</span>
+			<span class="text-sm font-bold text-indigo-600 sm:text-xl">Week {weekInfo.weekNumber}</span>
+			<span class="text-sm italic text-gray-600 sm:text-xl">{weekInfo.weekRange}</span>
 		</h4>
-		<h1 class="flex items-center gap-2 text-base font-extrabold text-gray-900 sm:text-2xl">
+		<h1 class="flex items-center gap-2 text-lg font-extrabold text-gray-900 sm:text-2xl">
 			<span>Welcome, Dieters!</span>
 			<img class="size-8" src={celebrateEmoji} alt="Celebration Icon" />
 		</h1>
