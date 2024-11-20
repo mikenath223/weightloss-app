@@ -28,8 +28,7 @@ Follow these steps to set up and run the project on your local machine:
    git clone [repository-url](https://github.com/mikenath223/weightloss-app)
    cd weightloss-app
 
-2. ## Install Dependencies
-------------------------
+2. **Install Dependencies**
 
 Install the required Node.js dependencies using Yarn:
 
@@ -38,22 +37,21 @@ yarn install
 ```
 
 3. ## Configure Firebase
-----------------------
 
-3.1. ### Create a New Project
+3.1 ### Create a New Project
 
 Create a new project in [Firebase Console](https://console.firebase.google.com/).
 
-3.2. ### Enable Firestore Database
+3.2 ### Enable Firestore Database
 
 Enable **Firestore Database** (in **test mode** for development).
 
-3.3. ### Generate Firebase Configuration
+3.3 ### Generate Firebase Configuration
 
 1. Navigate to **Project Settings** > **General** > **Your apps** > **SDK setup and configuration**.
 2. Copy the Firebase config object (e.g., `apiKey`, `authDomain`, etc.).
 
-3.4. ### Add Firebase Configuration to Environment Variables
+3.4 ### Add Firebase Configuration to Environment Variables
 
 - Create a `.env` file in the root directory:
 
@@ -75,7 +73,7 @@ VITE_APP_ID=<your-app-id>
 4. ## Run the Development Server
 -----------------------------
 
-4.1. Start the app locally:
+4.1 Start the app locally:
 
 ```bash
 yarn dev --open
@@ -84,7 +82,6 @@ yarn dev --open
 4.2.Open your browser at [http://localhost:5173](http://localhost:5173).
 
 5. ## Build for Production
--------------------------
 
 Create a production-ready build:
 
@@ -99,7 +96,7 @@ yarn preview
 ```
 
 6. # Firebase and Mock Data
-==========================
+-------------------------
 
 ## Mock Data Source
 
@@ -126,7 +123,8 @@ You do not need to manually upload the data. On first load, the app detects if t
 ```
 
 7. # Scripts
-==========
+-------------------------
+
 
 | **Script**                | **Description**                                                      |
 |----------------------------|----------------------------------------------------------------------|
@@ -138,18 +136,19 @@ You do not need to manually upload the data. On first load, the app detects if t
 | `yarn check`              | Runs `svelte-check` to verify TypeScript and Svelte correctness.    |
 
 # Author
-=======
+-------------------------
+
 
 **Michgolden Ukeje**  [LinkedIn Profile](https://www.linkedin.com/in/michgoldenukeje/)  
 
 # Relevant Notes
-================
+-------------------------
 
 * **First-Time Data Setup**: Mock data is auto-populated on Firebase during the first app load. Ensure Firebase is configured before starting the app.
 * **Tailwind CSS**: Tailwind utilities are used extensively for styling. Modify `tailwind.config.js` to adjust the design.
 * **Chart.js**: The app leverages `Chart.js` for all visualizations. Refer to the [Chart.js documentation](https://www.chartjs.org/docs/latest/) for further customization.
 
 # Enjoy Tracking and Progressing!
-==================================
+-------------------------
 
 The app is designed to motivate and create a delightful experience. Let’s achieve those goals together! 🎉
