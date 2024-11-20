@@ -15,6 +15,14 @@ export const load = async () => {
 
 	return {
 		data,
-		isLoading
+		isLoading,
+		seo: {
+			title: 'Weight Loss Tracker',
+			description: 'Join the Weight Loss Tracker app and reach your fitness goals.',
+			keywords: 'fitness, weight loss, tracking, community',
+			author: 'Michgolden Ukeje',
+			ogTitle: 'Weight Loss Tracker',
+			ogDescription: 'Track and achieve your fitness goals with the community.'
+		}
 	};
 };

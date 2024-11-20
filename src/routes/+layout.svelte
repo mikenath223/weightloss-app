@@ -14,6 +14,7 @@
 	import Loading from '$lib/components/ui/Loading.svelte';
 	import MobileMenuDrawer from '$lib/components/modal/MobileMenuDrawer.svelte';
 	import Footer from '$lib/components/layout/Footer.svelte';
+	import SeoContent from '$lib/components/layout/SeoContent.svelte';
 
 	initializeStores();
 
@@ -34,6 +35,7 @@
 		<MobileMenuDrawer />
 	{/if}
 </Drawer>
+<SeoContent />
 <main class="container mx-auto min-h-screen max-w-screen-2xl p-5 !pb-24 font-body md:p-10">
 	<section class="mb-10 mt-28 md:mx-6">
 		{@render children()}
