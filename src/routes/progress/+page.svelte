@@ -11,7 +11,7 @@
 
 	let { data }: { data: PageData } = $props();
 
-	let weeklyChangeSelectedDieter = $state(data.weeklyChangesData.dieters[0]); // Default to the first dieter
+	let weeklyChangeSelectedDieter = $state(data.weeklyChangesData.dieters[0]);
 	let weeklyChangesChartConfig: ChartConfiguration<'bar'> = $derived(
 		updateWeeklyChangesChartConfig(
 			data.weeklyChangesData.weeklyChanges,
@@ -19,7 +19,8 @@
 			weeklyChangeSelectedDieter
 		)
 	);
-	let percentageChangeSelectedDieter = $state(data.percentageChangesData.dieters[0]); // Default to the first dieter
+
+	let percentageChangeSelectedDieter = $state(data.percentageChangesData.dieters[0]);
 	let percentageChangesChartConfig: ChartConfiguration<'bar'> = $derived(
 		updateWeeklyPercentageChartConfig(
 			data.percentageChangesData.weeklyPercentageChanges,
@@ -27,11 +28,13 @@
 			percentageChangeSelectedDieter
 		)
 	);
+
 	const rankPercentageLostChartConfig = {
 		type: 'bar',
 		data: data.rankChartData,
 		options: rankPercentageLossChartOptions
 	};
+
 	const weeksAheadBehindChartConfig = {
 		type: 'bar',
 		data: data.weeksAheadBehindChartData,
@@ -39,60 +42,92 @@
 	};
 </script>
 
-<h2 class="h2 mt-20 font-extrabold">Group Performance</h2>
-<p class="py-3">See how we are doing as a community!</p>
-<GroupWeightLoss groupTotalWeightLoss={data.groupTotalWeightLoss} />
-<h2 class="h2 mt-20 font-extrabold">Weekly Progress Activity</h2>
-<p class="py-3">We've all been doing pretty well so far, let's go dieters!</p>
-<section class="grid grid-cols-1 gap-4 xl:grid-cols-2">
-	<CardWData>
-		<div class="mx-4 mb-4 mt-2">
-			<label for="dieter" class="text-md block font-semibold text-gray-700">Select Dieter</label>
-			<select
-				id="dieter"
-				bind:value={weeklyChangeSelectedDieter}
-				class="w-28 rounded border-2 border-red-500 p-2 focus:outline-none focus:ring-2 focus:ring-red-300"
-			>
-				{#each data.weeklyChangesData.dieters as dieter}
-					<option value={dieter}>{dieter}</option>
-				{/each}
-			</select>
+<section class="progress-page min-h-screen space-y-12 py-10">
+	<header class="text-center">
+		<h1 class="text-5xl font-extrabold text-indigo-700 drop-shadow-md">🌟 Progress Tracker 🌟</h1>
+		<p class="mt-4 text-lg text-gray-800 md:text-xl">
+			Let's see how far we've come together as a team! Keep going! 💪
+		</p>
+	</header>
+
+	<section class="group-performance space-y-8">
+		<h2 class="text-3xl font-bold text-purple-600 drop-shadow-sm">Group Performance</h2>
+		<p class="text-lg text-gray-700">How are we doing as a community? Let's find out!</p>
+		<GroupWeightLoss groupTotalWeightLoss={data.groupTotalWeightLoss} />
+	</section>
+
+	<section class="weekly-activity space-y-8">
+		<h2 class="text-3xl font-bold text-red-600 drop-shadow-sm">Weekly Progress Activity</h2>
+		<p class="text-lg text-gray-700">Consistency is key! We're doing amazing!</p>
+		<div class="grid grid-cols-1 gap-8 xl:grid-cols-2">
+			<CardWData className={'!p-0 !pb-4'}>
+				<div class="rounded-t-lg bg-gradient-to-r from-red-400 to-pink-400 px-6 py-4 text-white">
+					<h3 class="text-lg font-bold">Weekly Weight Changes</h3>
+				</div>
+				<div class="space-y-4 p-6">
+					<label for="dieter" class="text-md -mb-3 block font-semibold text-gray-600">
+						Select Dieter
+					</label>
+					<select
+						id="dieter"
+						bind:value={weeklyChangeSelectedDieter}
+						class="w-full rounded-md border-2 border-gray-300 bg-white p-2 shadow-md focus:border-red-400 focus:ring-2 focus:ring-red-200"
+					>
+						{#each data.weeklyChangesData.dieters as dieter}
+							<option value={dieter}>{dieter}</option>
+						{/each}
+					</select>
+					<p class="text-md text-gray-700">
+						View <span class="font-bold">{weeklyChangeSelectedDieter}'s</span> weekly weight changes
+						in kg.
+					</p>
+					{#if weeklyChangesChartConfig}
+						<DataChart chartConfig={weeklyChangesChartConfig} />
+					{/if}
+				</div>
+			</CardWData>
+
+			<CardWData className={'!p-0 !pb-4'}>
+				<div
+					class="rounded-t-lg bg-gradient-to-r from-yellow-400 to-orange-400 px-6 py-4 text-white"
+				>
+					<h3 class="text-lg font-bold">Weekly Percentage Changes</h3>
+				</div>
+				<div class="space-y-4 p-6">
+					<label for="dieter" class="text-md -mb-3 block font-semibold text-gray-600">
+						Select Dieter
+					</label>
+					<select
+						id="dieter"
+						bind:value={percentageChangeSelectedDieter}
+						class="w-full rounded-md border-2 border-gray-300 bg-white p-2 shadow-md focus:border-yellow-400 focus:ring-2 focus:ring-yellow-200"
+					>
+						{#each data.percentageChangesData.dieters as dieter}
+							<option value={dieter}>{dieter}</option>
+						{/each}
+					</select>
+					<p class="text-md text-gray-700">
+						View <span class="font-bold">{percentageChangeSelectedDieter}'s</span> weekly percentage
+						changes.
+					</p>
+					{#if percentageChangesChartConfig}
+						<DataChart chartConfig={percentageChangesChartConfig} />
+					{/if}
+				</div>
+			</CardWData>
 		</div>
-		<h4 class="h4 mx-4 mb-2">
-			Here is {weeklyChangeSelectedDieter}'s weekly weight changes in kg
-		</h4>
-		{#if weeklyChangesChartConfig}
-			<DataChart chartConfig={weeklyChangesChartConfig} />
-		{/if}
-	</CardWData>
-	<CardWData>
-		<div class="mx-4 mb-4 mt-2">
-			<label for="dieter" class="text-md block font-semibold text-gray-700">Select Dieter</label>
-			<select
-				id="dieter"
-				bind:value={percentageChangeSelectedDieter}
-				class="w-28 rounded border-2 border-red-500 p-2 focus:outline-none focus:ring-2 focus:ring-red-300"
-			>
-				{#each data.percentageChangesData.dieters as dieter}
-					<option value={dieter}>{dieter}</option>
-				{/each}
-			</select>
+	</section>
+
+	<section class="rankings-progress space-y-8">
+		<h2 class="text-3xl font-bold text-indigo-600 drop-shadow-sm">Rankings and Progress Status</h2>
+		<p class="text-lg text-gray-700">How do we stack up as a team? Let's find out! 🚀</p>
+		<div class="grid grid-cols-1 gap-8 xl:grid-cols-2">
+			<CardWData>
+				<DataChart chartConfig={rankPercentageLostChartConfig} />
+			</CardWData>
+			<CardWData>
+				<DataChart chartConfig={weeksAheadBehindChartConfig} />
+			</CardWData>
 		</div>
-		<h4 class="h4 mx-4 mb-2">
-			Here is {percentageChangeSelectedDieter}'s weekly percentage changes
-		</h4>
-		{#if percentageChangesChartConfig}
-			<DataChart chartConfig={percentageChangesChartConfig} />
-		{/if}
-	</CardWData>
-</section>
-<h2 class="h2 mt-20 font-extrabold">Rankings and Progress Status</h2>
-<p class="py-3">Let's see how we stack up, we are so awesome!</p>
-<section class="grid grid-cols-1 gap-4 xl:grid-cols-2">
-	<div class="card card-hover w-auto bg-white p-4">
-		<DataChart chartConfig={rankPercentageLostChartConfig} />
-	</div>
-	<div class="card card-hover w-auto bg-white p-4">
-		<DataChart chartConfig={weeksAheadBehindChartConfig} />
-	</div>
+	</section>
 </section>

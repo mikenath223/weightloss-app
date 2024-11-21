@@ -14,7 +14,7 @@
 	$: weekInfo = getCurrentWeekInfo();
 
 	$: classesActive = (href: string) =>
-		href === $page?.url?.pathname ? '!underline hover:!opacity-80' : 'opacity-80';
+		href === $page?.url?.pathname ? '!text-indigo-600 hover:!opacity-80' : 'opacity-80';
 
 	const modal: ModalSettings = {
 		type: 'component',
@@ -28,7 +28,7 @@
 		id: 'mobile-menu',
 		width: 'w-[85%]',
 		rounded: 'rounded-none',
-		bgDrawer: 'bg-body-light-2',
+		bgDrawer: 'bg-white',
 		position: 'right'
 	};
 
@@ -41,27 +41,38 @@
 </script>
 
 <nav
-	class="fixed top-0 z-10 flex w-full items-center justify-around bg-body-light-2 px-5 py-3 drop-shadow"
+	class="fixed top-0 z-10 flex w-full items-center justify-between bg-gradient-to-r from-pink-300 to-yellow-200 px-6 py-4 shadow-md"
 >
-	<div class="mr-auto w-full">
-		<h4 class="h4 flex items-center gap-2 text-gray-500">
-			<span>Week {weekInfo.weekNumber}</span>
-			<span class="font-body text-sm italic text-action underline">{weekInfo.weekRange}</span>
+	<div class="flex flex-col">
+		<h4 class="flex items-center gap-2 text-gray-700">
+			<span class="font-bold text-indigo-600">Week {weekInfo.weekNumber}</span>
+			<span class="text-sm italic text-gray-600">{weekInfo.weekRange}</span>
 		</h4>
-		<h1 class="h2 flex gap-2 text-gray-800">
-			<span>Welcome Dieters</span><img class="size-10" src={celebrateEmoji} alt="..." />
+		<h1 class="flex items-center gap-2 text-2xl font-extrabold text-gray-900">
+			<span>Welcome, Dieters!</span>
+			<img class="size-8" src={celebrateEmoji} alt="Celebration Icon" />
 		</h1>
 	</div>
-	<div class="mr-auto hidden w-full items-center justify-around md:flex">
+
+	<div class="hidden items-center gap-6 md:flex">
 		{#each NAV_LINKS as { name, path }}
 			<Navlink {classesActive} navLink={path} navText={name} />
 		{/each}
-		<button type="button" class="variant-filled btn" onclick={onClickOpenModal}>
-			<span><MdiPlus /></span>
+		<button
+			type="button"
+			class="flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-white shadow-md hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-300"
+			onclick={onClickOpenModal}
+		>
+			<MdiPlus class="size-5" />
 			<span>Add Weight</span>
 		</button>
 	</div>
-	<Button className="ml-auto md:hidden" type="button" onclick={onClickOpenDrawer}>
+
+	<Button
+		className="md:hidden flex items-center gap-2 text-indigo-600"
+		type="button"
+		onclick={onClickOpenDrawer}
+	>
 		<MdiMenu class="size-6" />
 	</Button>
 </nav>

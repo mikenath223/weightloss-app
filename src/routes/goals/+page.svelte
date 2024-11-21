@@ -28,28 +28,51 @@
 	};
 </script>
 
-<section class="goals-page space-y-4">
-	<h2 class="h2 font-extrabold">Dieter's Cumulative Progress</h2>
-	<p class="py-3">This is pretty sleek, seems we've been giving our targets no breathing space!</p>
-	<section class="grid grid-cols-1 gap-10 xl:grid-cols-2">
-		<CardWData>
-			<div class="mx-4 mb-4 mt-2">
-				<label for="dieter" class="text-md block font-semibold text-gray-700">Select Dieter</label>
+<section class="goals-page min-h-screen space-y-6 px-6 py-10">
+	<header class="text-center">
+		<h1 class="text-4xl font-extrabold text-red-600 drop-shadow-md">🌟 Goals Dashboard 🌟</h1>
+		<p class="mt-4 text-lg text-gray-800 md:text-xl">Keep striving and smashing those targets!</p>
+	</header>
+
+	<section class="grid grid-cols-1 gap-12 lg:grid-cols-2">
+		<CardWData className={'!p-0 !pb-4'}>
+			<div
+				class="flex items-center justify-between rounded-t-lg bg-gradient-to-r from-red-400 to-pink-400 px-4 py-2 text-white"
+			>
+				<h2 class="text-lg font-bold">Individual Progress</h2>
+			</div>
+			<div class="space-y-5 px-6">
+				<label for="dieter" class="text-md -mb-3 mt-2 block font-semibold text-gray-600">
+					Select Dieter
+				</label>
 				<select
 					id="dieter"
 					bind:value={selectedDieter}
-					class="w-28 rounded border-2 border-red-500 p-2 focus:outline-none focus:ring-2 focus:ring-red-300"
+					class="w-full rounded-md border-2 border-gray-300 bg-white p-2 shadow-md focus:border-red-400 focus:ring-2 focus:ring-red-200"
 				>
 					{#each data.individualCumulativeProgress as { name }}
 						<option value={name}>{name}</option>
 					{/each}
 				</select>
+				<p class="text-md text-gray-700">
+					View <span class="font-bold">{selectedDieter}'s</span> progress compared to their weekly target.
+				</p>
+				<DataChart chartConfig={goalsCumulativeChartConfig} />
 			</div>
-			<h4 class="h4 mx-4 mb-2">Here is {selectedDieter}'s cumulative progress vs weekly target</h4>
-			<DataChart chartConfig={goalsCumulativeChartConfig} />
 		</CardWData>
-		<CardWData>
-			<DataChart chartConfig={groupCumulativeChartConfig} />
+
+		<CardWData className={'!p-0 !pb-4'}>
+			<div
+				class="flex items-center justify-between rounded-t-lg bg-gradient-to-r from-green-400 to-teal-400 px-4 py-2 text-white"
+			>
+				<h2 class="text-lg font-bold">Group Progress</h2>
+			</div>
+			<div class="space-y-4 px-6">
+				<p class="text-md my-4 text-gray-700">
+					The team's collective progress toward the shared goal.
+				</p>
+				<DataChart chartConfig={groupCumulativeChartConfig} />
+			</div>
 		</CardWData>
 	</section>
 </section>
