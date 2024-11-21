@@ -12,7 +12,7 @@
 
 <section class="flex min-h-screen flex-col items-center justify-between space-y-12 px-6 py-10">
 	<header class="text-center">
-		<h1 class="text-2xl font-extrabold text-indigo-700 drop-shadow-md md:text-5xl">
+		<h1 class="mb-10 text-2xl font-extrabold text-indigo-700 drop-shadow-md md:text-5xl">
 			🎉 Weekly Summary 🎉
 		</h1>
 		<p class="mt-4 text-lg text-gray-800 md:text-2xl">

@@ -44,20 +44,24 @@
 
 <section class="progress-page min-h-screen space-y-12 py-10">
 	<header class="text-center">
-		<h1 class="text-5xl font-extrabold text-indigo-700 drop-shadow-md">🌟 Progress Tracker 🌟</h1>
+		<h1 class="text-3xl font-extrabold text-indigo-700 drop-shadow-md md:text-5xl">
+			🌟 Progress Tracker 🌟
+		</h1>
 		<p class="mt-4 text-lg text-gray-800 md:text-xl">
 			Let's see how far we've come together as a team! Keep going! 💪
 		</p>
 	</header>
 
 	<section class="group-performance space-y-8">
-		<h2 class="text-3xl font-bold text-purple-600 drop-shadow-sm">Group Performance</h2>
+		<h2 class="text-2xl font-bold text-purple-600 drop-shadow-sm">Group Performance</h2>
 		<p class="text-lg text-gray-700">How are we doing as a community? Let's find out!</p>
 		<GroupWeightLoss groupTotalWeightLoss={data.groupTotalWeightLoss} />
 	</section>
 
 	<section class="weekly-activity space-y-8">
-		<h2 class="text-3xl font-bold text-red-600 drop-shadow-sm">Weekly Progress Activity</h2>
+		<h2 class="text-2xl font-bold text-red-600 drop-shadow-sm md:text-3xl">
+			Weekly Progress Activity
+		</h2>
 		<p class="text-lg text-gray-700">Consistency is key! We're doing amazing!</p>
 		<div class="grid grid-cols-1 gap-8 xl:grid-cols-2">
 			<CardWData className={'!p-0 !pb-4'}>
