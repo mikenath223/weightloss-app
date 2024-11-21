@@ -29,7 +29,7 @@
 	});
 </script>
 
-<section class="goals-page min-h-screen px-6 py-10">
+<section class="goals-page min-h-screen py-10 md:px-6">
 	<PageHeaderView
 		title="🌟 Goals Dashboard 🌟"
 		subtitle="Keep striving and smashing those targets! 🎉"
