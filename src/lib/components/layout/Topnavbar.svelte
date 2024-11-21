@@ -6,8 +6,9 @@
 	import { getCurrentWeekInfo } from '$lib/utils/date';
 	import { page } from '$app/stores';
 	import Navlink from '../ui/Navlink.svelte';
-	import type { ModalSettings } from '@skeletonlabs/skeleton';
+	import type { DrawerSettings, ModalSettings } from '@skeletonlabs/skeleton';
 	import { getModalStore } from '@skeletonlabs/skeleton';
+	import { getDrawerStore } from '@skeletonlabs/skeleton';
 
 	$: weekInfo = getCurrentWeekInfo();
 
@@ -18,10 +19,21 @@
 		type: 'component',
 		component: 'modalComponentOne'
 	};
-
 	const modalStore = getModalStore();
 	const onClickOpenModal = () => {
 		modalStore.trigger(modal);
+	};
+
+	const mobileMenuDrawer: DrawerSettings = {
+		id: 'mobile-menu',
+		width: 'w-[85%]',
+		rounded: 'rounded-none',
+		bgDrawer: 'bg-body-light-2'
+	};
+	const drawerStore = getDrawerStore();
+
+	const onClickOpenDrawer = () => {
+		drawerStore.open(mobileMenuDrawer);
 	};
 </script>
 
@@ -41,12 +53,12 @@
 		<Navlink {classesActive} navLink="/" navText="Home" />
 		<Navlink {classesActive} navLink="/progress" navText="Progress" />
 		<Navlink {classesActive} navLink="/goals" navText="Goals" />
-		<button type="button" class="variant-filled btn" on:click={onClickOpenModal}>
+		<button type="button" class="variant-filled btn" onclick={onClickOpenModal}>
 			<span><MdiPlus /></span>
 			<span>Add Weight</span>
 		</button>
 	</div>
-	<button class="ml-auto md:hidden" type="button">
+	<button class="ml-auto md:hidden" type="button" onclick={onClickOpenDrawer}>
 		<MdiMenu class="size-6" />
 	</button>
 </nav>

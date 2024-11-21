@@ -1,3 +1,5 @@
+import { getUniqueDieters } from '../dieters';
+
 /**
  * Calculates a weekly summary of weight loss progress for a group of dieters.
  *
@@ -35,7 +37,7 @@ export const calculateWeeklySummary = (
 		};
 	}
 
-	const dieters = Object.keys(data[currentWeek]);
+	const dieters = getUniqueDieters(data);
 
 	let totalWeightLoss = 0;
 	let topAchiever = { name: '', weightChange: -Infinity };

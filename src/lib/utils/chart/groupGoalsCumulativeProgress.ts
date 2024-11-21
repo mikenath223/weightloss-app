@@ -1,4 +1,5 @@
 import { RED, RED_TRANSPARENT, TEAL, TEAL_TRANSPARENT } from '$lib/constant/progressConstants';
+import { getUniqueDieters } from '../dieters';
 
 /**
  * Calculates the cumulative progress for all dieters combined.
@@ -17,13 +18,12 @@ export const calculateGroupCumulativeProgress = (
 	data: Record<string, Record<string, number | undefined>>,
 	targetPerWeek: number
 ) => {
-	const weeks = Object.keys(data); // Get all weeks
-	const dieters = Object.keys(data[weeks[0]]); // Get all dieters
+	const weeks = Object.keys(data);
+	const dieters = getUniqueDieters(data);
 
 	const groupCumulativeLoss: number[] = [];
 	const groupTargetLoss: number[] = [];
 
-	// Initialize cumulative loss trackers
 	let totalCumulativeLoss = 0;
 
 	weeks.forEach((week, index) => {

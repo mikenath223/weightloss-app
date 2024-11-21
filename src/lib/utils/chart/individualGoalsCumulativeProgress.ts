@@ -1,9 +1,11 @@
+import { getUniqueDieters } from '../dieters';
+
 export const calculateCumulativeProgress = (
 	data: Record<string, Record<string, number | undefined>>,
 	targetPerWeek: number
 ) => {
 	const weeks = Object.keys(data);
-	const dieters = Object.keys(data[weeks[0]]);
+	const dieters = getUniqueDieters(data);
 
 	/**
 	 * Calculates and updates the cumulative weight loss and target loss for a given dieter.

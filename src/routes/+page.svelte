@@ -12,8 +12,10 @@
 
 <section class="flex min-h-screen flex-col items-center justify-between gap-8 space-y-10">
 	<header class="text-center">
-		<h1 class="text-5xl font-extrabold text-indigo-700 drop-shadow-md">Weekly Summary</h1>
-		<p class="mt-4 text-xl text-gray-800 md:text-2xl">
+		<h1 class="text-3xl font-extrabold text-indigo-700 drop-shadow-md md:text-5xl">
+			Weekly Summary
+		</h1>
+		<p class="mt-4 text-lg text-gray-800 md:text-2xl">
 			This is the progress for <span class="font-bold">{data.weekInfo.weekRange}</span>.
 		</p>
 		{#if data.weeklySummary.hasDataForCurrentWeek}
@@ -27,7 +29,7 @@
 						<h3 class="h3 mt-10 font-bold text-gray-800">
 							No data for this week yet. Please enter data to see how everyone is doing! 🚀
 						</h3>
-						<LottieAnimation src={noDataLottie} width={400} height={400} />
+						<LottieAnimation src={noDataLottie} width={300} height={300} />
 					</div>
 				</CardWData>
 			</section>

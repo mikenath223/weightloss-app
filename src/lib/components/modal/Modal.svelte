@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getModalStore } from '@skeletonlabs/skeleton';
+	import { getModalStore, getToastStore } from '@skeletonlabs/skeleton';
 	import AddWeightForm from '../form/AddWeightForm.svelte';
 	import * as yup from 'yup';
 	import LottieAnimation from '../ui/LottieAnimation.svelte';
@@ -8,6 +8,8 @@
 	import Loading from '../ui/Loading.svelte';
 
 	const modalStore = getModalStore();
+
+	const toastStore = getToastStore();
 
 	const formData = $state({
 		name: undefined,
@@ -29,7 +31,7 @@
 			await schema.validate(formData, { abortEarly: false });
 			errors = {};
 			isSubmitting = true;
-			await handleSubmit(formData.name ?? '', formData.weight);
+			await handleSubmit(formData.name ?? '', toastStore, formData.weight);
 			isSubmitting = false;
 			if ($modalStore[0].response) $modalStore[0].response(formData);
 			modalStore.close();
@@ -70,10 +72,9 @@
 						Cancel
 					</button>
 					<button class="variant-filled btn" disabled={isSubmitting} onclick={onFormSubmit}>
+						Submit
 						{#if isSubmitting}
-							<!-- <Loading /> -->
-						{:else}
-							Submit
+							<Loading />
 						{/if}
 					</button>
 				</footer>

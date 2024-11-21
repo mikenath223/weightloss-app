@@ -5,6 +5,7 @@ import {
 	RED_TRANSLUCENT,
 	WEEKLY_WEIGHT_LOSS_TARGET
 } from '$lib/constant/progressConstants';
+import { getUniqueDieters } from '../dieters';
 
 /**
  * Calculates the number of weeks each dieter is ahead or behind their weight loss target.
@@ -26,7 +27,7 @@ export const calculateWeeksAheadBehind = (
 	const weeks = Object.keys(data);
 	const numWeeks = weeks.length;
 
-	const dieters = Object.keys(data[weeks[0]]);
+	const dieters = getUniqueDieters(data);
 
 	// Aggregate total weight loss for each dieter
 	const results = dieters.map((dieter) => {

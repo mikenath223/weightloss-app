@@ -5,16 +5,16 @@
  * @returns An array of objects with dieter names and total percentage weight loss, sorted by total percentage weight loss in descending order.
  */
 export const calculateRankByPercentageLoss = (
-	percentageChanges: Record<string, number | undefined>[]
+	percentageChanges: Record<string, number | undefined>[],
+	dieters: string[]
 ) => {
-	const aggregated = Object.keys(percentageChanges[0]) // Get dieters' names
-		.map((dieter) => {
-			const totalPercentageLoss = percentageChanges.reduce((sum, week) => {
-				return sum + (week[dieter] ?? 0); // Sum up all percentage changes
-			}, 0);
+	const aggregated = dieters.map((dieter) => {
+		const totalPercentageLoss = percentageChanges.reduce((sum, week) => {
+			return sum + (week?.[dieter] ?? 0); // Sum up all percentage changes
+		}, 0);
 
-			return { name: dieter, totalPercentageLoss };
-		});
+		return { name: dieter, totalPercentageLoss };
+	});
 
 	// Sort by totalPercentageLoss (descending)
 	const sorted = aggregated.sort((a, b) => b.totalPercentageLoss - a.totalPercentageLoss);

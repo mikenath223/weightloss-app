@@ -1,4 +1,5 @@
 import type { ChartConfiguration } from 'chart.js';
+import { getUniqueDieters } from '../dieters';
 
 type ChangeCalculator = (
 	currentWeight: number | undefined,
@@ -17,7 +18,7 @@ export const calculateWeeklyChanges = (
 	calculateChange: ChangeCalculator
 ) => {
 	const weeks = Object.keys(data);
-	const dieters = Object.keys(data[weeks[0]]);
+	const dieters = getUniqueDieters(data);
 
 	const weeklyChanges: Record<string, number | undefined>[] = [];
 

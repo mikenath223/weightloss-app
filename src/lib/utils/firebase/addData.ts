@@ -1,4 +1,6 @@
-import { invalidate } from '$app/navigation';
+import { invalidate, invalidateAll } from '$app/navigation';
+import { shouldRunMockData } from '$lib/stores/runMockData';
+import { getToastStore, type ToastStore } from '@skeletonlabs/skeleton';
 import { getCurrentWeekInfo } from '../date';
 import { db } from './config';
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
@@ -11,43 +13,52 @@ import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
  *
  * @throws Error - If there is an error adding data to the database.
  */
-export const addDataToFirebase = async (name: string, weight?: number) => {
+export const addDataToFirebase = async (name: string, toastStore: ToastStore, weight?: number) => {
 	try {
 		const weekStartDate = getCurrentWeekInfo().weekRange.split(' to ')[0];
 
-		const docRef = doc(db, 'weights', weekStartDate);
+		const docRef = doc(db, 'weeklyData', weekStartDate);
 		const docSnapshot = await getDoc(docRef);
 
 		if (docSnapshot.exists()) {
 			await updateDoc(docRef, {
-				[name]: weight
+				[name]: weight ?? null
 			});
 		} else {
 			await setDoc(docRef, {
-				[name]: weight
+				[name]: weight ?? null
 			});
 		}
+		toastStore.trigger({
+			message: 'Successfully added a new dieter weight',
+			background: 'variant-filled-success'
+		});
 	} catch (error) {
+		toastStore.trigger({
+			message: 'Error adding data to Firebase',
+			background: 'variant-filled-error'
+		});
 		console.error('Error adding data to Firebase:', error);
 		throw error;
 	}
 };
 
 /**
- * Handles the submission of a weight entry for a given dieter by adding it to the database
- * and reloading the root layout to update the data.
+ * Submits a new weight entry for a given dieter to the database.
  *
  * @param {string} name - The name of the dieter.
- * @param {number | undefined} weight - The weight of the dieter in the current week. If undefined, the entry is removed.
+ * @param {number} [weight] - The weight of the dieter in the current week.
  *
- * @throws Error - If there is an error adding data to the database or reloading the root layout.
+ * @throws Error - If there is an error submitting data to the database.
  */
-export const handleSubmit = async (name: string, weight?: number) => {
+export const handleSubmit = async (name: string, toastStore: ToastStore, weight?: number) => {
 	try {
-		await addDataToFirebase(name, weight);
+		await addDataToFirebase(name, toastStore, weight);
 
-		// Reload the root layout to update data
-		await invalidate('layout');
+		shouldRunMockData.set(false);
+		await invalidate('/');
+		await invalidateAll();
+		shouldRunMockData.set(true);
 	} catch (error) {
 		console.error('Error submitting data:', error);
 	}

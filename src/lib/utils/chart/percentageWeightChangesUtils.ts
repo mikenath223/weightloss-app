@@ -30,7 +30,8 @@ export const calculateWeeklyPercentageChange = (
 				previousWeight !== undefined &&
 				previousWeight !== 0 // Avoid division by zero
 			) {
-				return ((currentWeight - previousWeight) / previousWeight) * 100; // Percentage difference
+				const percentageChange = ((currentWeight - previousWeight) / previousWeight) * 100;
+				return percentageChange;
 			}
 			return undefined; // No change if data is missing
 		}
@@ -55,7 +56,7 @@ export const prepareWeeklyPercentageChartData = (
 	weeks: string[],
 	selectedDieter: string
 ) => {
-	const dieterChanges = weeklyPercentageChanges.map(
+	const selectedDieterChanges = weeklyPercentageChanges.map(
 		(weekChange) => weekChange[selectedDieter] ?? 0
 	);
 
@@ -64,9 +65,9 @@ export const prepareWeeklyPercentageChartData = (
 		datasets: [
 			{
 				label: `Weekly Percentage Changes for ${selectedDieter}`,
-				data: dieterChanges, // Changes for the selected dieter
-				backgroundColor: dieterChanges.map((change) => (change < 0 ? TEAL_OPAQUE : PINK)),
-				borderColor: dieterChanges.map((change) => (change < 0 ? TEAL_SOLID : PINK_SOLID)),
+				data: selectedDieterChanges,
+				backgroundColor: selectedDieterChanges.map((change) => (change < 0 ? TEAL_OPAQUE : PINK)),
+				borderColor: selectedDieterChanges.map((change) => (change < 0 ? TEAL_SOLID : PINK_SOLID)),
 				borderWidth: 1
 			}
 		]

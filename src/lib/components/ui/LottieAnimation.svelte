@@ -1,6 +1,7 @@
 <script>
 	import { browser } from '$app/environment';
 	import { LottiePlayer } from '@lottiefiles/svelte-lottie-player';
+	import Loading from './Loading.svelte';
 	let { src, height, width } = $props();
 </script>
 
@@ -15,4 +16,6 @@
 		{height}
 		{width}
 	/>
+{:else}
+	<Loading />
 {/if}
