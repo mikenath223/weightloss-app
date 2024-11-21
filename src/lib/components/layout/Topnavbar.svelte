@@ -2,13 +2,14 @@
 	import celebrateEmoji from '$lib/assets/icons/party-popper.png';
 	import MdiPlus from 'virtual:icons/mdi/plus';
 	import MdiMenu from 'virtual:icons/mdi/menu';
-
 	import { getCurrentWeekInfo } from '$lib/utils/date';
 	import { page } from '$app/stores';
 	import Navlink from '../ui/Navlink.svelte';
 	import type { DrawerSettings, ModalSettings } from '@skeletonlabs/skeleton';
 	import { getModalStore } from '@skeletonlabs/skeleton';
 	import { getDrawerStore } from '@skeletonlabs/skeleton';
+	import { NAV_LINKS } from '$lib/constant/progressConstants';
+	import Button from '../ui/Button.svelte';
 
 	$: weekInfo = getCurrentWeekInfo();
 
@@ -19,19 +20,21 @@
 		type: 'component',
 		component: 'modalComponentOne'
 	};
+	const drawerStore = getDrawerStore();
+
 	const modalStore = getModalStore();
-	const onClickOpenModal = () => {
-		modalStore.trigger(modal);
-	};
 
 	const mobileMenuDrawer: DrawerSettings = {
 		id: 'mobile-menu',
 		width: 'w-[85%]',
 		rounded: 'rounded-none',
-		bgDrawer: 'bg-body-light-2'
+		bgDrawer: 'bg-body-light-2',
+		position: 'right'
 	};
-	const drawerStore = getDrawerStore();
 
+	const onClickOpenModal = () => {
+		modalStore.trigger(modal);
+	};
 	const onClickOpenDrawer = () => {
 		drawerStore.open(mobileMenuDrawer);
 	};
@@ -50,15 +53,15 @@
 		</h1>
 	</div>
 	<div class="mr-auto hidden w-full items-center justify-around md:flex">
-		<Navlink {classesActive} navLink="/" navText="Home" />
-		<Navlink {classesActive} navLink="/progress" navText="Progress" />
-		<Navlink {classesActive} navLink="/goals" navText="Goals" />
+		{#each NAV_LINKS as { name, path }}
+			<Navlink {classesActive} navLink={path} navText={name} />
+		{/each}
 		<button type="button" class="variant-filled btn" onclick={onClickOpenModal}>
 			<span><MdiPlus /></span>
 			<span>Add Weight</span>
 		</button>
 	</div>
-	<button class="ml-auto md:hidden" type="button" onclick={onClickOpenDrawer}>
+	<Button className="ml-auto md:hidden" type="button" onclick={onClickOpenDrawer}>
 		<MdiMenu class="size-6" />
-	</button>
+	</Button>
 </nav>

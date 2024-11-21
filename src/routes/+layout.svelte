@@ -4,6 +4,7 @@
 	import Topnavbar from '$lib/components/layout/Topnavbar.svelte';
 	import {
 		Drawer,
+		getDrawerStore,
 		initializeStores,
 		Modal,
 		Toast,
@@ -11,10 +12,13 @@
 	} from '@skeletonlabs/skeleton';
 	import ModalComponentOne from '$lib/components/modal/Modal.svelte';
 	import Loading from '$lib/components/ui/Loading.svelte';
+	import MobileMenuDrawer from '$lib/components/modal/MobileMenuDrawer.svelte';
 
 	initializeStores();
 
 	let { children, data }: { children: () => any; data: LayoutData } = $props();
+
+	let drawerStore = getDrawerStore();
 
 	const modalRegistry: Record<string, ModalComponent> = {
 		modalComponentOne: { ref: ModalComponentOne }
@@ -24,7 +28,11 @@
 <Topnavbar />
 <Toast position="t" />
 <Modal components={modalRegistry} />
-<Drawer />
+<Drawer>
+	{#if $drawerStore.id === 'mobile-menu'}
+		<MobileMenuDrawer />
+	{/if}
+</Drawer>
 <main class="container mx-auto max-w-screen-2xl p-5 font-body md:p-10">
 	<section class="mb-10 mt-28 md:mx-6">
 		{@render children()}

@@ -20,6 +20,21 @@ const weekColors = [TEAL, ORANGE, PURPLE, RED, BLUE, DARKGRAY, TEAL];
 const WEEKLY_WEIGHT_LOSS_TARGET = 0.5;
 const START_DATE = new Date('2024-10-02');
 
+const NAV_LINKS = [
+	{
+		name: 'Home',
+		path: '/'
+	},
+	{
+		name: 'Progress',
+		path: '/progress'
+	},
+	{
+		name: 'Goals',
+		path: '/goals'
+	}
+];
+
 export {
 	TEAL,
 	ORANGE,
@@ -39,5 +54,6 @@ export {
 	RED_TRANSLUCENT,
 	DARK_GREEN,
 	DARK_RED,
-	START_DATE
+	START_DATE,
+	NAV_LINKS
 };
