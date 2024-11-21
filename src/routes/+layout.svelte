@@ -34,7 +34,7 @@
 		<MobileMenuDrawer />
 	{/if}
 </Drawer>
-<main class="container mx-auto max-w-screen-2xl p-5 !pb-24 font-body md:p-10">
+<main class="container mx-auto min-h-screen max-w-screen-2xl p-5 !pb-24 font-body md:p-10">
 	<section class="mb-10 mt-28 md:mx-6">
 		{@render children()}
 		{#if data.isLoading}

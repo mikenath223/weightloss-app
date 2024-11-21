@@ -7,7 +7,7 @@ export const load = async () => {
 	let isLoading = true;
 
 	if (get(shouldRunMockData)) {
-		loadMockData();
+		await loadMockData();
 	}
 
 	const data = await fetchFormattedData();

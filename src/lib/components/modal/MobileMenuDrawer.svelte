@@ -6,6 +6,7 @@
 	import { page } from '$app/stores';
 	import { getDrawerStore, getModalStore, type ModalSettings } from '@skeletonlabs/skeleton';
 	import Button from '../ui/Button.svelte';
+	import AddWeightBtn from '../ui/AddWeightBtn.svelte';
 
 	$: classesActive = (href: string) =>
 		href === $page?.url?.pathname ? '!text-indigo-600 hover:!opacity-80' : 'opacity-80';
@@ -37,8 +38,5 @@
 	{#each NAV_LINKS as { name, path }}
 		<Navlink {classesActive} navLink={path} navText={name} onclick={onClickCloseDrawer} />
 	{/each}
-	<button type="button" class="variant-filled btn" onclick={onClickOpenModal}>
-		<span><MdiPlus /></span>
-		<span>Add Weight</span>
-	</button>
+	<AddWeightBtn onclick={onClickOpenModal} />
 </div>

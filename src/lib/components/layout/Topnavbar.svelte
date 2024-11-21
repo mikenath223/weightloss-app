@@ -1,6 +1,5 @@
 <script lang="ts">
 	import celebrateEmoji from '$lib/assets/icons/party-popper.png';
-	import MdiPlus from 'virtual:icons/mdi/plus';
 	import MdiMenu from 'virtual:icons/mdi/menu';
 	import { getCurrentWeekInfo } from '$lib/utils/date';
 	import { page } from '$app/stores';
@@ -10,6 +9,7 @@
 	import { getDrawerStore } from '@skeletonlabs/skeleton';
 	import { NAV_LINKS } from '$lib/constant/progressConstants';
 	import Button from '../ui/Button.svelte';
+	import AddWeightBtn from '../ui/AddWeightBtn.svelte';
 
 	$: weekInfo = getCurrentWeekInfo();
 
@@ -58,14 +58,7 @@
 		{#each NAV_LINKS as { name, path }}
 			<Navlink {classesActive} navLink={path} navText={name} />
 		{/each}
-		<button
-			type="button"
-			class="flex items-center gap-2 rounded-full bg-indigo-600 px-4 py-2 text-white shadow-md hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-300"
-			onclick={onClickOpenModal}
-		>
-			<MdiPlus class="size-5" />
-			<span>Add Weight</span>
-		</button>
+		<AddWeightBtn onclick={onClickOpenModal} />
 	</div>
 
 	<Button

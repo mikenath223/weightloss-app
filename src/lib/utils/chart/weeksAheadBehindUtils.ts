@@ -56,11 +56,11 @@ export const prepareWeeksAheadBehindChartData = (
 	weeksAheadBehindData: { name: string; weeksAheadBehind: number }[]
 ) => {
 	return {
-		labels: weeksAheadBehindData.map((item) => item.name), // Dieters' names
+		labels: weeksAheadBehindData.map((item) => item.name),
 		datasets: [
 			{
 				label: 'Weeks Ahead/Behind',
-				data: weeksAheadBehindData.map((item) => item.weeksAheadBehind), // Weeks ahead/behind
+				data: weeksAheadBehindData.map((item) => item.weeksAheadBehind),
 				backgroundColor: weeksAheadBehindData.map((item) =>
 					item.weeksAheadBehind >= 0 ? GREEN : RED_TRANSLUCENT
 				),
