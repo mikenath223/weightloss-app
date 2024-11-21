@@ -8,7 +8,7 @@
 	import type { ChartConfiguration } from 'chart.js';
 	import CardWData from '$lib/components/ui/CardWData.svelte';
 	import { updateWeeklyPercentageChartConfig } from '$lib/utils/chart/percentageWeightChangesUtils';
-	import PageHeaderView from '$lib/components/ui/PageHeaderView.svelte';
+	import PageLayout from '$lib/components/layout/PageLayout.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -43,18 +43,16 @@
 	});
 </script>
 
-<section class="progress-page min-h-screen space-y-16 py-10">
-	<PageHeaderView
-		title="🌟 Progress Tracker 🌟"
-		subtitle="Let's see how far we've come together as a team! Keep going! 💪"
-	/>
-
+<PageLayout
+	title="🌟 Progress Tracker 🌟"
+	subtitle="Let's see how far we've come together as a team! Keep going! 💪"
+	className="space-y-16"
+>
 	<section class="group-performance space-y-8">
 		<h2 class="text-2xl font-bold text-purple-600 drop-shadow-sm">Group Performance</h2>
 		<p class="text-lg text-gray-700">How are we doing as a community? Let's find out!</p>
 		<GroupWeightLoss groupTotalWeightLoss={data.groupTotalWeightLoss} />
 	</section>
-
 	<section class="weekly-activity space-y-8">
 		<h2 class="text-2xl font-bold text-red-600 drop-shadow-sm md:text-3xl">
 			Weekly Progress Activity
@@ -87,7 +85,6 @@
 					{/if}
 				</div>
 			</CardWData>
-
 			<CardWData className={'!p-0 !pb-4'}>
 				<div
 					class="rounded-t-lg bg-gradient-to-r from-yellow-400 to-orange-400 px-6 py-4 text-white"
@@ -118,7 +115,6 @@
 			</CardWData>
 		</div>
 	</section>
-
 	<section class="rankings-progress space-y-8">
 		<h2 class="text-3xl font-bold text-indigo-600 drop-shadow-sm">Rankings and Progress Status</h2>
 		<p class="text-lg text-gray-700">How do we stack up as a team? Let's find out! 🚀</p>
@@ -131,4 +127,4 @@
 			</CardWData>
 		</div>
 	</section>
-</section>
+</PageLayout>

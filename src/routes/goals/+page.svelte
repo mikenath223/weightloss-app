@@ -10,7 +10,7 @@
 		groupCumulativeProgressChartOptions,
 		prepareGroupCumulativeProgressChartData
 	} from '$lib/utils/chart/groupGoalsCumulativeProgress';
-	import PageHeaderView from '$lib/components/ui/PageHeaderView.svelte';
+	import PageLayout from '$lib/components/layout/PageLayout.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -29,11 +29,7 @@
 	});
 </script>
 
-<section class="goals-page min-h-screen py-10 md:px-6">
-	<PageHeaderView
-		title="🌟 Goals Dashboard 🌟"
-		subtitle="Keep striving and smashing those targets! 🎉"
-	/>
+<PageLayout title="🌟 Goals Dashboard 🌟" subtitle="Keep striving and smashing those targets! 🎉">
 	<section class="grid grid-cols-1 gap-12 lg:grid-cols-2">
 		<CardWData className={'!p-0 !pb-4'}>
 			<div
@@ -74,4 +70,4 @@
 			</div>
 		</CardWData>
 	</section>
-</section>
+</PageLayout>
