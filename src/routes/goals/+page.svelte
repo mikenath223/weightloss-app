@@ -11,6 +11,7 @@
 		prepareGroupCumulativeProgressChartData
 	} from '$lib/utils/chart/groupGoalsCumulativeProgress';
 	import PageLayout from '$lib/components/layout/PageLayout.svelte';
+	import { WEEKLY_WEIGHT_LOSS_TARGET } from '$lib/constant/progressConstants';
 
 	let { data }: { data: PageData } = $props();
 
@@ -30,6 +31,9 @@
 </script>
 
 <PageLayout title="🌟 Goals Dashboard 🌟" subtitle="Keep striving and smashing those targets! 🎉">
+	<h3 class="-pt-5 h3 pb-10 text-center">
+		We have a target of {WEEKLY_WEIGHT_LOSS_TARGET}kg, we can do this guys!
+	</h3>
 	<section class="grid grid-cols-1 gap-12 lg:grid-cols-2">
 		<CardWData className={'!p-0 !pb-4'}>
 			<div
