@@ -13,6 +13,7 @@
 	import ModalComponentOne from '$lib/components/modal/Modal.svelte';
 	import Loading from '$lib/components/ui/Loading.svelte';
 	import MobileMenuDrawer from '$lib/components/modal/MobileMenuDrawer.svelte';
+	import Footer from '$lib/components/layout/Footer.svelte';
 
 	initializeStores();
 
@@ -33,7 +34,7 @@
 		<MobileMenuDrawer />
 	{/if}
 </Drawer>
-<main class="container mx-auto max-w-screen-2xl p-5 font-body md:p-10">
+<main class="container mx-auto max-w-screen-2xl p-5 !pb-24 font-body md:p-10">
 	<section class="mb-10 mt-28 md:mx-6">
 		{@render children()}
 		{#if data.isLoading}
@@ -43,4 +44,5 @@
 			</div>
 		{/if}
 	</section>
+	<Footer />
 </main>

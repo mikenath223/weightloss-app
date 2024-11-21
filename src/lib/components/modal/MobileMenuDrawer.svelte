@@ -8,7 +8,7 @@
 	import Button from '../ui/Button.svelte';
 
 	$: classesActive = (href: string) =>
-		href === $page?.url?.pathname ? '!underline hover:!opacity-80' : 'opacity-80';
+		href === $page?.url?.pathname ? '!text-indigo-600 hover:!opacity-80' : 'opacity-80';
 
 	const drawerStore = getDrawerStore();
 
@@ -35,7 +35,7 @@
 		<MdiClose class="size-7" />
 	</Button>
 	{#each NAV_LINKS as { name, path }}
-		<Navlink {classesActive} navLink={path} navText={name} />
+		<Navlink {classesActive} navLink={path} navText={name} onclick={onClickCloseDrawer} />
 	{/each}
 	<button type="button" class="variant-filled btn" onclick={onClickOpenModal}>
 		<span><MdiPlus /></span>

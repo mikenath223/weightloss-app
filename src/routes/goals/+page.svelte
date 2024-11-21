@@ -29,8 +29,10 @@
 </script>
 
 <section class="goals-page min-h-screen space-y-6 px-6 py-10">
-	<header class="text-center">
-		<h1 class="text-4xl font-extrabold text-red-600 drop-shadow-md">🌟 Goals Dashboard 🌟</h1>
+	<header class="!mb-20 text-center">
+		<h1 class="text-2xl font-extrabold text-red-600 drop-shadow-md md:text-4xl">
+			🌟 Goals Dashboard 🌟
+		</h1>
 		<p class="mt-4 text-lg text-gray-800 md:text-xl">Keep striving and smashing those targets!</p>
 	</header>
 

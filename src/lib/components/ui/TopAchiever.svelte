@@ -4,9 +4,9 @@
 	let { name, isWeightGreaterThanZero, weightChange } = $props();
 </script>
 
-<section class="animate-customPop flex flex-col items-center space-y-6">
+<section class="flex animate-customPop flex-col items-center space-y-6">
 	<div class="flex flex-col items-center">
-		<h2 class="mt-4 text-4xl font-bold text-green-600">
+		<h2 class="mt-4 text-2xl font-bold text-green-600 md:text-4xl">
 			Top Achiever: {name}
 		</h2>
 		{#if isWeightGreaterThanZero}

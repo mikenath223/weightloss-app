@@ -60,7 +60,7 @@ export const rankPercentageLossChartOptions = {
 	maintainAspectRatio: false,
 	plugins: {
 		legend: {
-			display: false // No need for legend since rank is explicit
+			display: false
 		},
 		title: {
 			display: true,
@@ -68,13 +68,16 @@ export const rankPercentageLossChartOptions = {
 		},
 		tooltip: {
 			callbacks: {
-				label: (tooltipItem: { raw: number }) => `${tooltipItem.raw.toFixed(2)}% loss` // Format tooltip values
+				label: (tooltipItem: { raw: number }) => {
+					const tooltipValue = tooltipItem.raw;
+					return `${tooltipValue.toFixed(2)}% ${tooltipValue > 0 ? 'gain' : 'loss'}`;
+				}
 			}
 		}
 	},
 	scales: {
 		x: {
-			beginAtZero: true, // Always start from 0
+			beginAtZero: true,
 			title: {
 				display: true,
 				text: 'Percentage Loss (%)'
